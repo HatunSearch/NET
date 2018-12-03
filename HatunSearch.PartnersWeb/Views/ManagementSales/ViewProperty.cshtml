@@ -7,7 +7,7 @@
 	PartnerDTO account = ViewBag.Account as PartnerDTO;
 	string add = localization["Add"], delete = localization["Delete"], id = localization["Id"], publish = localization["Publish"], thereAreNoPreviouslyAddedFeatures = localization["ThereAreNoPreviouslyAddedFeatures"],
 		thereAreNoPreviouslyAddedPictures = localization["ThereAreNoPreviouslyAddedPictures"];
-	ICollection<PropertyFeatureDetailDTO> features = Model.Features.OrderBy(i => i.Feature.DisplayName).ToList();
+	ICollection<PropertyFeatureDetailDTO> features = Model.Features.OrderBy(i => i.Feature.DisplayName.Value).ToList();
 	bool isEditable = !Model.HasBeenPaid || (Model.HasBeenReviewed && !Model.HasBeenPublished);
 	ICollection<PropertyPictureDTO> pictures = Model.Pictures.OrderBy(i => i.Description).ToList();
 	ViewBag.Title = Model.Name;

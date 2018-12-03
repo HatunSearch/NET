@@ -1,0 +1,14 @@
+﻿@using HatunSearch.PartnersWeb.Globalization;
+@{
+	LocalizationProvider localization = ViewBag.LocalizationProvider as LocalizationProvider;
+	Layout = "~/Views/Layout.cshtml";
+	string errorInformation = localization["ErrorInformation"], exceptionMessage = ViewBag.ExceptionMessage as string, http500Error = localization["500Error"];
+	ViewBag.Title = http500Error;
+	ViewBag.AdditionalStylesheets = new string[] { "Errors.Error500" };
+}
+<md:content>
+	<img src="~/png/Logo_361x86.png" width="181" />
+	<md:h6>@http500Error</md:h6>
+	<md:subtitle2>@errorInformation</md:subtitle2>
+	<md:body1>@Html.Raw(exceptionMessage)</md:body1>
+</md:content>

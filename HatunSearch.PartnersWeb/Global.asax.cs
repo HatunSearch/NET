@@ -14,6 +14,20 @@ namespace HatunSearch.PartnersWeb
 {
 	public abstract class MvcApplication : HttpApplication
 	{
+		protected void Application_Error(object sender, EventArgs eventArgs)
+		{
+			Exception exception = Server.GetLastError();
+			Server.ClearError();
+			Response.TrySkipIisCustomErrors = true;
+			Response.Clear();
+			ErrorsController errorsController = new ErrorsController();
+			errorsController.ViewBag.Exception = exception;
+			RouteData routeData = new RouteData();
+			routeData.Values["Culture"] = HttpContext.Current.Request.RequestContext.RouteData.Values["culture"];
+			routeData.Values["Controller"] = "Errors";
+			routeData.Values["Action"] = "Error500";
+			(errorsController as IController).Execute(new RequestContext(new HttpContextWrapper(Context), routeData));
+		}
 		protected void Application_Start()
 		{
 			AreaRegistration.RegisterAllAreas();

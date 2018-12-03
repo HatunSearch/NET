@@ -7,6 +7,7 @@ using HatunSearch.Data.Databases;
 using HatunSearch.Entities;
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.Drawing;
 using System.Web;
 using System.Web.Hosting;
 using System.Web.Mvc;
@@ -143,25 +144,36 @@ namespace HatunSearch.PartnersWeb.Controllers
 		[Route("properties/{id}/pictures/add")]
 		public ActionResult AddPropertyPicture(Guid id, AddPropertyPictureDTO request)
 		{
+			bool hasAValidPicture = false;
+			try { using (new Bitmap(request.Picture.InputStream)) { hasAValidPicture = true; } }
+			catch { }
 			PartnerBLL partnerBLL = new PartnerBLL(WebApp.Connector);
 			PropertyDTO property = AddEditPropertyPicture_Base(partnerBLL, id);
 			if (ModelState.IsValid)
 			{
-				PropertyPictureDTO picture = new PropertyPictureDTO()
+				if (hasAValidPicture)
 				{
-					Property = property,
-					Description = request.Description
-				};
-				PartnerBLL.AddPropertyPictureResult result = partnerBLL.AddPropertyPicture(Account, id, picture);
-				switch (result)
+					PropertyPictureDTO picture = new PropertyPictureDTO()
+					{
+						Property = property,
+						Description = request.Description
+					};
+					PartnerBLL.AddPropertyPictureResult result = partnerBLL.AddPropertyPicture(Account, id, picture);
+					switch (result)
+					{
+						case PartnerBLL.AddPropertyPictureResult.OK:
+							string imgRepository = HostingEnvironment.MapPath("~/img");
+							request.Picture.SaveAs($"{imgRepository}/{picture.Id}.bin");
+							TempData["Result"] = "PropertyPictureHasBeenAdded";
+							return RedirectToAction("ViewProperty");
+						case PartnerBLL.AddPropertyPictureResult.NotFound: return HttpNotFound();
+						default: return BadRequest();
+					}
+				}
+				else
 				{
-					case PartnerBLL.AddPropertyPictureResult.OK:
-						string imgRepository = HostingEnvironment.MapPath("~/img");
-						request.Picture.SaveAs($"{imgRepository}/{picture.Id}.bin");
-						TempData["Result"] = "PropertyPictureHasBeenAdded";
-						return RedirectToAction("ViewProperty");
-					case PartnerBLL.AddPropertyPictureResult.NotFound: return HttpNotFound();
-					default: return BadRequest();
+					AddError("Picture", "FileIsNotAValidPicture");
+					return View(request);
 				}
 			}
 			else return property != null ? BadRequestWithErrors() as ActionResult : HttpNotFound();
@@ -295,7 +307,12 @@ namespace HatunSearch.PartnersWeb.Controllers
 				{
 					case PartnerBLL.DeletePropertyPictureResult.OK:
 						TempData["Result"] = "PropertyPictureHasBeenDeleted";
-						HostingEnvironment.MapPath($"~/img/{pictureId}.img");
+						try
+						{
+							string image = HostingEnvironment.MapPath($"~/img/{pictureId}.img");
+							System.IO.File.Delete(image);
+						}
+						catch { }
 						return RedirectToAction("ViewProperty", new { id = propertyId });
 					case PartnerBLL.DeletePropertyPictureResult.NotFound: return HttpNotFound();
 					default: return BadRequest();

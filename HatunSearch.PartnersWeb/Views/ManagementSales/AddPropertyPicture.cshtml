@@ -1,11 +1,14 @@
 ﻿@using HatunSearch.Entities;
+@using HatunSearch.PartnersWeb.Controllers;
 @using HatunSearch.PartnersWeb.Globalization;
 @using HatunSearch.PartnersWeb.Helpers;
-@model PropertyPictureDTO
+@model ManagementSalesController.AddPropertyPictureDTO
 @{
 	Layout = "~/Views/Management/Layout.cshtml";
 	LocalizationProvider localization = ViewBag.LocalizationProvider as LocalizationProvider;
 	string add = localization["Add"], addAPropertyPicture = localization["AddAPropertyPicture"];
+	IDictionary<string, string> errors = ViewBag.Errors as IDictionary<string, string>;
+	bool hasErrors = errors?.ContainsKey("Picture") ?? false;
 	ViewBag.Title = addAPropertyPicture;
 	ViewBag.AdditionalStylesheets = new string[] { "Management", "ManagementSales.AddPropertyPicture" };
 	ViewBag.IsBackButtonEnabled = true;
@@ -17,6 +20,7 @@
 			<md:h6>@addAPropertyPicture</md:h6>
 			<md:subtitle2>@localization["Picture"]</md:subtitle2>
 			<input name="Picture" type="file" />
+			@if (hasErrors) {<md:helpertext hasErrors="true">@localization[errors["Picture"]]</md:helpertext>}
 			@Html.MakeTextfield(MaterialHtmlHelperExtensions.MaterialTextfieldType.Filled, model => model.Description, Model?.Description)
 		</md:dcontentarea>
 		<md:dactionarea alignment="horizontal">

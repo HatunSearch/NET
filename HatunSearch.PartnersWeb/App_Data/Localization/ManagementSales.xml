@@ -39,6 +39,7 @@
 		<item key="EditAProperty" value="Editar un inmueble" />
 		<item key="EditAPropertyFeature" value="Editar una característica de inmueble" />
 		<item key="EditAPropertyPicture" value="Editar una imagen de inmueble" />
+		<item key="FileIsNotAValidPicture" value="El archivo no es un imagen válida." />
 		<item key="From" value="De" />
 		<item key="Hidden" value="Oculto" />
 		<item key="InOrderToPublishAPropertyYouShouldAddItHere" value="Para publicar un inmueble, primero debes agregarlo aquí." />

@@ -164,7 +164,7 @@
 							}
 						};
 						select.onmousedown = function(event) { event.preventDefault(); };
-						select.onclick = (function(select) {
+						select.onclick = (function(select, label) {
 							return function() {
 								var dialogs = MaterialDesign.Dialogs;
 								var dialog = dialogs.Create("confirmation", {
@@ -188,7 +188,7 @@
 								});
 								dialogs.Show(dialog);
 							};
-						})(select);
+						})(select, label);
 					}
 				}
 				var textarea = textfield.querySelector("textarea");

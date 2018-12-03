@@ -1,0 +1,8 @@
+﻿md\:content {
+	padding-bottom: 24px;
+	padding-left: 24px;
+	padding-right: 24px;
+	padding-top: 24px;
+}
+img, md\:h6, md\:subtitle2 { margin-bottom: 8px; }
+md\:body1 { word-break: break-all; }

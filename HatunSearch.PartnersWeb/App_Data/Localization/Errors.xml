@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<localization>
+	<language id="es">
+		<item key="500Error" value="Error 500: Error interno del servidor" />
+		<item key="ErrorInformation" value="Información del error" />
+	</language>
+</localization>

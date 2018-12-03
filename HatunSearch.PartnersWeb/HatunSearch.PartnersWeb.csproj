@@ -101,6 +101,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="App_Data\Localization\Entities.xml" />
+    <Content Include="App_Data\Localization\Errors.xml" />
     <Content Include="App_Data\Localization\Management.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -113,6 +114,7 @@
     <Content Include="App_Data\Localization\WebApp.xml" />
     <Content Include="css\Accounts.css" />
     <Content Include="css\Accounts.Signup.css" />
+    <Content Include="css\Errors.Error500.css" />
     <Content Include="css\Management.css" />
     <Content Include="css\Management.Home.css" />
     <Content Include="css\ManagementAccount.AddCard.css" />
@@ -163,6 +165,7 @@
   <ItemGroup>
     <Compile Include="Controllers\AccountsController.cs" />
     <Compile Include="Controllers\AuthenticationRequiredHybridBaseController.cs" />
+    <Compile Include="Controllers\ErrorsController.cs" />
     <Compile Include="Controllers\JsonBasedController.cs" />
     <Compile Include="Controllers\ManagementBaseController.cs" />
     <Compile Include="Controllers\HybridBaseController.cs" />
@@ -226,6 +229,7 @@
     <Content Include="Views\ManagementSales\DeletePropertyPicture.cshtml" />
     <Content Include="Views\ManagementSales\EditPropertyPicture.cshtml" />
     <Content Include="Views\ManagementSales\AddPropertyPicture.cshtml" />
+    <Content Include="Views\Errors\Error500.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
