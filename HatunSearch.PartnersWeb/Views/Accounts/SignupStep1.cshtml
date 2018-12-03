@@ -1,0 +1,32 @@
+﻿@using HatunSearch.Entities;
+@using HatunSearch.PartnersWeb.Globalization;
+@using HatunSearch.PartnersWeb.Helpers;
+@model PartnerCredentialDTO
+@{
+	Layout = "~/Views/Layout.cshtml";
+	LocalizationProvider localization = ViewBag.LocalizationProvider as LocalizationProvider;
+	string createANewAccount = localization["CreateANewAccount"], doYouAlreadyHaveAnAccount = localization["DoYouAlreadyHaveAnAccount"], next = localization["Next"],
+		step1AccessCredentials = localization["Step1AccessCredentials"];
+	ViewBag.Title = createANewAccount;
+	ViewBag.AdditionalStylesheets = new string[] { "Accounts", "Accounts.Signup" };
+	ViewBag.AddAScrim = true;
+}
+<md:dialog isFullScreen="false" type="confirmation">
+	<form action="@Url.Action("SignupStep1")" method="post">
+		<md:dcontentarea>
+			<img src="~/png/Logo_361x86.png" />
+			<md:h6>@createANewAccount</md:h6>
+			<md:subtitle2>@step1AccessCredentials</md:subtitle2>
+			@Html.MakeTextfield(MaterialHtmlHelperExtensions.MaterialTextfieldType.Filled, model => model.Username, Model?.Username)
+			@Html.MakeTextfield(MaterialHtmlHelperExtensions.MaterialTextfieldType.Filled, model => model.Password)
+			<md:caption>
+				@Html.Raw(string.Format(doYouAlreadyHaveAnAccount, Url.Action("Login")))
+			</md:caption>
+		</md:dcontentarea>
+		<md:dactionarea alignment="horizontal">
+			<md:dbutton>
+				<button>@next</button>
+			</md:dbutton>
+		</md:dactionarea>
+	</form>
+</md:dialog>

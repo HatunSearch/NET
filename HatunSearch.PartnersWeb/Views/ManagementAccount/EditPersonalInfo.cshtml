@@ -1,0 +1,41 @@
+﻿@using HatunSearch.Entities;
+@using HatunSearch.PartnersWeb.Globalization;
+@using HatunSearch.PartnersWeb.Helpers;
+@model PartnerPersonalInfoDTO
+@{
+	Layout = "~/Views/Management/Layout.cshtml";
+	LocalizationProvider localization = ViewBag.LocalizationProvider as LocalizationProvider;
+	string editPersonalInfo = localization["EditPersonalInfo"], update = localization["Update"],
+		youWillNeedToVerifyYourAccountIfYouChangeYourEmailAddress = localization["YouWillNeedToVerifyYourAccountIfYouChangeYourEmailAddress"];
+	IEnumerable<GenderDTO> genders = ViewBag.Genders as IEnumerable<GenderDTO>;
+	ViewBag.Title = editPersonalInfo;
+	ViewBag.AdditionalStylesheets = new string[] { "Management", "ManagementAccount.EditPersonalInfo" };
+	ViewBag.IsBackButtonEnabled = true;
+	ViewBag.PreviousPage = Url.Action("MyProfile");
+}
+<md:dialog isFullScreen="false" type="confirmation">
+	<form action="@Url.Action("EditPersonalInfo")" method="post">
+		<md:dcontentarea>
+			<md:h6>@editPersonalInfo</md:h6>
+			@Html.MakeTextfield(MaterialHtmlHelperExtensions.MaterialTextfieldType.Filled, model => model.FirstName, Model?.FirstName)
+			@Html.MakeTextfield(MaterialHtmlHelperExtensions.MaterialTextfieldType.Filled, model => model.MiddleName, Model?.MiddleName)
+			@Html.MakeTextfield(MaterialHtmlHelperExtensions.MaterialTextfieldType.Filled, model => model.LastName, Model?.LastName)
+			@Html.MakeDropDown(MaterialHtmlHelperExtensions.MaterialTextfieldType.Filled, model => model.Gender, genders, i => i.DisplayName.Value, Model?.Gender?.Id)
+			@Html.MakeTextfield(MaterialHtmlHelperExtensions.MaterialTextfieldType.Filled, model => model.EmailAddress, Model?.EmailAddress)
+			@Html.MakeTextfield(MaterialHtmlHelperExtensions.MaterialTextfieldType.Filled, model => model.MobileNumber, Model?.MobileNumber)
+			<md:paper>
+				<md:image>
+					<svg viewBox="0 0 24 24">
+						<path d="M20,8L12,13L4,8V6L12,11L20,6M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z" />
+					</svg>
+				</md:image>
+				<md:caption>@youWillNeedToVerifyYourAccountIfYouChangeYourEmailAddress</md:caption>
+			</md:paper>
+		</md:dcontentarea>
+		<md:dactionarea alignment="horizontal">
+			<md:dbutton>
+				<button>@update</button>
+			</md:dbutton>
+		</md:dactionarea>
+	</form>
+</md:dialog>

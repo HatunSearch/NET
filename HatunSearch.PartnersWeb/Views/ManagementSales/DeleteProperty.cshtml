@@ -1,0 +1,41 @@
+﻿@using HatunSearch.Entities;
+@using HatunSearch.PartnersWeb.Globalization;
+@model PropertyDTO
+@{
+	Layout = "~/Views/Management/Layout.cshtml";
+	LocalizationProvider localization = ViewBag.LocalizationProvider as LocalizationProvider;
+	string areYouSureYouWantToDeleteThis = localization["AreYouSureYouWantToDeleteThis"], delete = localization["Delete"], deleteAProperty = localization["DeleteAProperty"];
+	ViewBag.Title = deleteAProperty;
+	ViewBag.AdditionalStylesheets = new string[] { "Management" };
+	ViewBag.IsBackButtonEnabled = true;
+	ViewBag.PreviousPage = Url.Action("ViewProperty", new { id = Model.Id });
+}
+<md:dialog isFullScreen="false" type="confirmation">
+	<form action="@Url.Action("DeleteProperty")" method="post">
+		<md:dcontentarea>
+			<md:h6>@deleteAProperty</md:h6>
+			<md:h6>@areYouSureYouWantToDeleteThis</md:h6>
+			<md:subtitle2>@localization[Html.DisplayNameFor(model => model.Id).ToString()]</md:subtitle2>
+			<md:subtitle1>@Model.Id</md:subtitle1>
+			<md:subtitle2>@localization[Html.DisplayNameFor(model => model.Name).ToString()]</md:subtitle2>
+			<md:subtitle1>@Model.Name</md:subtitle1>
+			<md:subtitle2>@localization[Html.DisplayNameFor(model => model.Type).ToString()]</md:subtitle2>
+			<md:subtitle1>@Model.Type.DisplayName</md:subtitle1>
+			<md:subtitle2>@localization[Html.DisplayNameFor(model => model.Address).ToString()]</md:subtitle2>
+			<md:subtitle1>@Model.Address</md:subtitle1>
+			<md:subtitle2>@localization[Html.DisplayNameFor(model => model.District).ToString()]</md:subtitle2>
+			<md:subtitle1>@Model.District.DisplayName</md:subtitle1>
+			<md:subtitle2>@localization[Html.DisplayNameFor(model => model.Province).ToString()]</md:subtitle2>
+			<md:subtitle1>@Model.Province.DisplayName</md:subtitle1>
+			<md:subtitle2>@localization[Html.DisplayNameFor(model => model.Region).ToString()]</md:subtitle2>
+			<md:subtitle1>@Model.Region.DisplayName</md:subtitle1>
+			<md:subtitle2>@localization[Html.DisplayNameFor(model => model.Country).ToString()]</md:subtitle2>
+			<md:subtitle1>@Model.Country.DisplayName</md:subtitle1>
+		</md:dcontentarea>
+		<md:dactionarea alignment="horizontal">
+			<md:dbutton>
+				<button>@delete</button>
+			</md:dbutton>
+		</md:dactionarea>
+	</form>
+</md:dialog>

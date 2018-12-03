@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<localization>
+	<language id="es">
+		<item key="Address" value="Dirección" />
+		<item key="AddressFormatErrorMessage" value="Debe ingresar una dirección válida, la cual debe estar compuesta de caracteres alfanuméricos o alguno de los siguientes símbolos: :,°'#.;" />
+		<item key="AddressIsRequired" value="Debe ingresar la dirección de su empresa." />
+		<item key="AddressLengthErrorMessage" value="La dirección debe tener entre 4 y 32 caracteres." />
+		<item key="Answer" value="Respuesta" />
+		<item key="AnswerIsRequired" value="Debe ingresar una respuesta." />
+		<item key="AnswerLengthErrorMessage" value="La respuesta debe tener entre 2 y 16384 caracteres." />
+		<item key="AnswerTimeStamp" value="Fecha y hora de la respuesta" />
+		<item key="Brand" value="Tipo" />
+		<item key="CompanyName" value="Nombre de la empresa" />
+		<item key="CompanyNameIsRequired" value="Debe ingresar el nombre de su empresa." />
+		<item key="CompanyNameLengthErrorMessage" value="El nombre de la empresa debe tener entre 2 y 32 caracteres." />
+		<item key="Country" value="País" />
+		<item key="CountryIsRequired" value="Debe seleccionar el país de su empresa." />
+		<item key="Customer" value="Cliente" />
+		<item key="Description" value="Descripción" />
+		<item key="DescriptionIsRequired" value="Debe ingresar una descripción." />
+		<item key="DescriptionLengthErrorMessage" value="La descripción debe tener entre 1 y 32 caracteres." />
+		<item key="District" value="Distrito" />
+		<item key="DistrictIsRequired" value="Debe seleccionar el distrito de su empresa." />
+		<item key="EmailAddress" value="Correo electrónico" />
+		<item key="EmailAddressAlreadyUsed" value="La dirección de correo electrónico ya está siendo utilizada por otra cuenta." />
+		<item key="EmailAddressFormatErrorMessage" value="Debe ingresar una dirección de correo electrónico válida." />
+		<item key="EmailAddressIsRequired" value="Debe ingresar su dirección de correo electrónico." />
+		<item key="EmailAddressLengthErrorMessage" value="La dirección de correo electrónico debe tener entre 6 y 255 caracteres." />
+		<item key="Expiration" value="Expiración" />
+		<item key="FeatureAlreadyAdded" value="La característica ya ha sido añadida para este inmueble anteriormente." />
+		<item key="FeatureIsRequired" value="Debe seleccionar una característica." />
+		<item key="Feature" value="Característica" />
+		<item key="Features" value="Características" />
+		<item key="FirstName" value="Primer nombre" />
+		<item key="FirstNameIsRequired" value="Debe ingresar su primer nombre." />
+		<item key="FirstNameLengthErrorMessage" value="El primer nombre debe tener entre 2 y 16 caracteres." />
+		<item key="Gender" value="Género" />
+		<item key="GenderIsRequired" value="Debe seleccionar un género." />
+		<item key="Id" value="Código" />
+		<item key="Last4" value="Número de la tarjeta" />
+		<item key="LastName" value="Apellidos" />
+		<item key="LastNameIsRequired" value="Debe ingresar sus apellidos." />
+		<item key="LastNameLengthErrorMessage" value="Los apellidos deben tener entre 2 y 32 caracteres." />
+		<item key="MiddleName" value="Segundo nombre" />
+		<item key="MiddleNameLengthErrorMessage" value="El segundo nombre debe tener entre 2 y 16 caracteres." />
+		<item key="MobileNumber" value="Teléfono móvil" />
+		<item key="MobileNumberFormatErrorMessage" value="Debe ingresar un número de teléfono móvil válido." />
+		<item key="MobileNumberIsRequired" value="Debe ingresar su número de teléfono móvil." />
+		<item key="MobileNumberLengthErrorMessage" value="El número de teléfono móvil debe tener entre 5 y 15 dígitos." />
+		<item key="Name" value="Nombre" />
+		<item key="NameIsRequired" value="Debe ingresar el nombre." />
+		<item key="NameLengthErrorMessage" value="El nombre debe tener entre 2 y 32 caracteres." />
+		<item key="Password" value="Contraseña" />
+		<item key="PasswordIsRequired" value="Debe ingresar su contraseña" />
+		<item key="PasswordLengthErrorMessage" value="La contraseña debe tener entre 8 y 64 caracteres." />
+		<item key="PhoneNumber" value="Teléfono" />
+		<item key="PhoneNumberFormatErrorMessage" value="Debe ingresar un número de teléfono válido." />
+		<item key="PhoneNumberIsRequired" value="Debe ingresar el número de teléfono de su empresa." />
+		<item key="PhoneNumberLengthErrorMessage" value="El número de teléfono debe tener entre 5 y 15 dígitos." />
+		<item key="Pictures" value="Imágenes" />
+		<item key="PreferredCurrency" value="Moneda preferida" />
+		<item key="PreferredCurrencyIsRequired" value="Debe seleccionar su moneda preferida." />
+		<item key="PreferredLanguage" value="Idioma preferido" />
+		<item key="PreferredLanguageIsRequired" value="Debe seleccionar su idioma preferido." />
+		<item key="Property" value="Inmueble" />
+		<item key="Province" value="Provincia" />
+		<item key="ProvinceIsRequired" value="Debe seleccionar la provincia de su empresa." />
+		<item key="PublishMode" value="Plan de publicación" />
+		<item key="PublishModeIsRequired" value="Debe seleccionar un plan de publicación." />
+		<item key="Question" value="Pregunta" />
+		<item key="QuestionTimeStamp" value="Fecha y hora de la pregunta" />
+		<item key="Region" value="Región" />
+		<item key="RegionIsRequired" value="Debe seleccionar la región de su empresa." />
+		<item key="Status" value="Estado" />
+		<item key="TimeStamp" value="Fecha y hora" />
+		<item key="Type" value="Tipo" />
+		<item key="Username" value="Nombre de usuario" />
+		<item key="UsernameAlreadyUsed" value="El nombre de usuario ya está siendo utilizado en otra cuenta." />
+		<item key="UsernameFormatErrorMessage" value="Debe ingresar un nombre de usuario válido, el cual debe empezar en un carácter alfanumérico y para el resto de caracteres debe contener solamente carácteres alfanuméricos o los siguientes símbolos: -_." />
+		<item key="UsernameIsRequired" value="Debe ingresar su nombre de usuario." />
+		<item key="UsernameLengthErrorMessage" value="El nombre de usuario debe tener entre 4 y 32 caracteres." />
+		<item key="Value" value="Valor" />
+		<item key="ValueLengthErrorMessage" value="El valor debe tener entre 1 y 32 caracteres." />
+		<item key="ValueIsRequired" value="Debe ingresar un valor." />
+		<item key="Website" value="Sitio web" />
+		<item key="WebsiteFormatErrorMessage" value="Debe ingresar un sitio web válido." />
+		<item key="WebsiteIsRequired" value="Debe ingresar su sitio web." />
+	</language>
+</localization>

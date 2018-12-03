@@ -1,0 +1,29 @@
+﻿md\:content {
+	min-height: calc(100vh - 56px);
+	position: relative;
+}
+md\:dialog md\:dcontentarea { padding-bottom: 8px !important; }
+md\:dialog md\:dcontentarea > *:not(:last-child) { margin-bottom: 4px; }
+md\:dactionarea { padding-right: 16px !important; }
+
+@media (max-width: 640px), (max-height: 280px) {
+	md\:content md\:dialog {
+		bottom: 0;
+		min-height: calc(100vh - 56px);
+		left: 0 !important;
+		max-width: unset !important;
+		right: 0;
+		top: 0 !important;
+		transform: unset !important;
+		width: 100%;
+	}
+	md\:content md\:dialog { position: unset !important; }
+	md\:content md\:dcontentarea > md\:h6:first-of-type { display: none; }
+}
+@media (min-width: 641px) {
+	md\:dialog {
+		max-width: 360px;
+		position: absolute !important;
+		width: 100%;
+	}
+}

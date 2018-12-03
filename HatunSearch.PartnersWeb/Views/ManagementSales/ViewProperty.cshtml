@@ -1,0 +1,133 @@
+﻿@using HatunSearch.Entities;
+@using HatunSearch.PartnersWeb.Globalization;
+@model PropertyDTO
+@{
+	Layout = "~/Views/Management/Layout.cshtml";
+	LocalizationProvider localization = ViewBag.LocalizationProvider as LocalizationProvider;
+	PartnerDTO account = ViewBag.Account as PartnerDTO;
+	string add = localization["Add"], delete = localization["Delete"], id = localization["Id"], publish = localization["Publish"], thereAreNoPreviouslyAddedFeatures = localization["ThereAreNoPreviouslyAddedFeatures"],
+		thereAreNoPreviouslyAddedPictures = localization["ThereAreNoPreviouslyAddedPictures"];
+	ICollection<PropertyFeatureDetailDTO> features = Model.Features.OrderBy(i => i.Feature.DisplayName).ToList();
+	bool isEditable = !Model.HasBeenPaid || (Model.HasBeenReviewed && !Model.HasBeenPublished);
+	ICollection<PropertyPictureDTO> pictures = Model.Pictures.OrderBy(i => i.Description).ToList();
+	ViewBag.Title = Model.Name;
+	ViewBag.AdditionalStylesheets = new string[] { "Management", "ManagementSales.ViewProperty" };
+	ViewBag.IsBackButtonEnabled = true;
+	ViewBag.PreviousPage = Url.Action("Properties");
+}
+<md:subtitle2>@localization[Html.DisplayNameFor(model => model.Id).ToString()]</md:subtitle2>
+<md:subtitle1>@Model.Id</md:subtitle1>
+<md:subtitle2>@localization[Html.DisplayNameFor(model => model.Type).ToString()]</md:subtitle2>
+<md:subtitle1>@Model.Type.DisplayName</md:subtitle1>
+<md:subtitle2>@localization[Html.DisplayNameFor(model => model.Address).ToString()]</md:subtitle2>
+<md:subtitle1>@Model.Address</md:subtitle1>
+<md:subtitle2>@localization[Html.DisplayNameFor(model => model.District).ToString()]</md:subtitle2>
+<md:subtitle1>@Model.District.DisplayName</md:subtitle1>
+<md:subtitle2>@localization[Html.DisplayNameFor(model => model.Province).ToString()]</md:subtitle2>
+<md:subtitle1>@Model.Province.DisplayName</md:subtitle1>
+<md:subtitle2>@localization[Html.DisplayNameFor(model => model.Region).ToString()]</md:subtitle2>
+<md:subtitle1>@Model.Region.DisplayName</md:subtitle1>
+<md:subtitle2>@localization[Html.DisplayNameFor(model => model.Country).ToString()]</md:subtitle2>
+<md:subtitle1>@Model.Country.DisplayName</md:subtitle1>
+@if (Model.HasBeenPaid)
+{
+	<md:subtitle2>@localization[Html.DisplayNameFor(model => model.PublishMode).ToString()]</md:subtitle2>
+	<md:subtitle1>@Model.PublishMode.DisplayName</md:subtitle1>
+}
+<md:subtitle2>@localization[Html.DisplayNameFor(model => model.Status).ToString()]</md:subtitle2>
+<md:subtitle1>@localization[Model.Status.ToString()]</md:subtitle1>
+@if (isEditable)
+{
+	<md:paper>
+		<md:button>
+			<a href="@Url.Action("DeleteProperty")">@delete</a>
+		</md:button>
+		@if (account.Cards.Count() > 0)
+		{
+			<md:button>
+				<a href="@Url.Action("PublishProperty")">@publish</a>
+			</md:button>
+		}
+	</md:paper>
+}
+<md:h6>@localization[Html.DisplayNameFor(model => model.Features).ToString()]</md:h6>
+@if (isEditable)
+{
+	<md:paper>
+		<md:button>
+			<a href="@Url.Action("AddPropertyFeature")">@add</a>
+		</md:button>
+	</md:paper>
+}
+@if (features.Count > 0)
+{
+	<md:list>
+		@foreach (PropertyFeatureDetailDTO feature in features)
+		{
+			<md:litem hasAButton="@isEditable.ToString().ToLower()" isDisabled="@((!isEditable).ToString().ToLower())" type="two-line" urlaction="@Url.Action("EditPropertyFeature", new { propertyId = Model.Id, featureId = feature.Feature.Id })">
+				<md:litext>
+					<md:litprimary>@feature.Feature.DisplayName</md:litprimary>
+					<md:litsecondary>@feature.Value</md:litsecondary>
+				</md:litext>
+				@if (isEditable)
+				{
+					<md:libutton urlaction="@Url.Action("DeletePropertyFeature", new { propertyId = Model.Id, featureId = feature.Feature.Id })">
+						<md:icon>
+							<svg viewBox="0 0 24 24">
+								<path d="M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z" />
+							</svg>
+						</md:icon>
+					</md:libutton>
+				}
+			</md:litem>
+		}
+	</md:list>
+}
+else { <md:subtitle1>@thereAreNoPreviouslyAddedFeatures</md:subtitle1>}
+<md:h6>@localization[Html.DisplayNameFor(model => model.Pictures).ToString()]</md:h6>
+@if (isEditable)
+{
+	<md:paper>
+		<md:button>
+			<a href="@Url.Action("AddPropertyPicture")">@add</a>
+		</md:button>
+	</md:paper>
+}
+@if (pictures.Count > 0)
+{
+	<md:list>
+		@foreach (PropertyPictureDTO picture in pictures)
+		{
+			<md:litem type="two-line" hasAButton="@isEditable.ToString().ToLower()" hasAnImage="true" hasAWideImage="false" isDisabled="@((!isEditable).ToString().ToLower())" urlaction="@Url.Action("EditPropertyPicture", new { propertyId = Model.Id, pictureId = picture.Id })">
+				<md:liimage>
+					<img src="~/img/@(picture.Id).bin" />
+				</md:liimage>
+				<md:litext>
+					<md:litprimary>@picture.Description</md:litprimary>
+					<md:litsecondary>@Html.Raw($"{id}: {picture.Id}")</md:litsecondary>
+				</md:litext>
+				@if (isEditable)
+				{
+					<md:libutton>
+						<md:icon>
+							<svg viewBox="0 0 24 24">
+								<path d="M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z" />
+							</svg>
+						</md:icon>
+					</md:libutton>
+				}
+			</md:litem>
+		}
+	</md:list>
+}
+else { <md:subtitle1>@thereAreNoPreviouslyAddedPictures</md:subtitle1>}
+@if (isEditable)
+{
+	<md:floatingactionbutton type="regular" urlaction="@Url.Action("EditProperty")">
+		<md:icon>
+			<svg viewBox="0 0 24 24">
+				<path d="M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z" />
+			</svg>
+		</md:icon>
+	</md:floatingactionbutton>
+}

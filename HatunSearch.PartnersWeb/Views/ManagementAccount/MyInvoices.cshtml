@@ -1,0 +1,34 @@
+﻿@using HatunSearch.Entities;
+@using HatunSearch.PartnersWeb.Globalization;
+@{
+	Layout = "~/Views/Management/Layout.cshtml";
+	LocalizationProvider localization = ViewBag.LocalizationProvider as LocalizationProvider;
+	PartnerDTO account = ViewBag.Account as PartnerDTO;
+	string asSoonAsYouPurchaseAServiceYouWillSeeTheInvoiceHere = localization["AsSoonAsYouPurchaseAServiceYouWillSeeTheInvoiceHere"], dateFormat = localization["DateFormat"],
+		invoiceFromDate = localization["InvoiceFromDate"], thereAreNoPreviouslyPurchasedServices = localization["ThereAreNoPreviouslyPurchasedServices"], totalCost = localization["TotalCost"];
+	ICollection<PartnerInvoiceDTO> invoices = account.Invoices.OrderByDescending(i => i.TimeStamp).ToList();
+	ViewBag.Title = localization["MyInvoices"];
+	ViewBag.AdditionalStylesheets = new string[] { "Management", "ManagementAccount.MyInvoices" };
+}
+@if (invoices.Count > 0)
+{
+	<md:list>
+		@foreach (PartnerInvoiceDTO invoice in invoices)
+		{
+			<md:litem type="two-line" urlaction="@Url.Action("ViewInvoice", new { id = invoice.Id })">
+				<md:litext>
+					<md:litprimary>@string.Format(invoiceFromDate, invoice.TimeStamp.ToString(dateFormat))</md:litprimary>
+					<md:litsecondary>@Html.Raw($"{totalCost}: {invoice.Currency.Symbol} {invoice.TotalCost.ToString("0.00")}")</md:litsecondary>
+				</md:litext>
+			</md:litem>
+		}
+	</md:list>
+}
+else
+{
+	<md:paper>
+		<img src="~/png/MyInvoices.Placeholder_256x256.png" />
+		<md:h5>@thereAreNoPreviouslyPurchasedServices</md:h5>
+		<md:subtitle1>@asSoonAsYouPurchaseAServiceYouWillSeeTheInvoiceHere</md:subtitle1>
+	</md:paper>
+}

@@ -1,0 +1,9 @@
+﻿md\:paper > * {
+	display: table-cell;
+	vertical-align: middle;
+}
+md\:paper > md\:image {
+	margin-right: 16px;
+	width: 40px;
+}
+md\:paper > md\:subtitle1 { padding-left: 4px; }

@@ -1,0 +1,29 @@
+﻿@using HatunSearch.Entities;
+@using HatunSearch.PartnersWeb.Globalization;
+@using HatunSearch.PartnersWeb.Helpers;
+@model PartnerPreferencesDTO
+@{
+	Layout = "~/Views/Management/Layout.cshtml";
+	LocalizationProvider localization = ViewBag.LocalizationProvider as LocalizationProvider;
+	string changePreferences = localization["ChangePreferences"], update = localization["Update"];
+	IEnumerable<CurrencyDTO> currencies = ViewBag.Currencies as IEnumerable<CurrencyDTO>;
+	IEnumerable<LanguageDTO> languages = ViewBag.Languages as IEnumerable<LanguageDTO>;
+	ViewBag.Title = changePreferences;
+	ViewBag.AdditionalStylesheets = new string[] { "Management", "ManagementAccount.EditPreferences" };
+	ViewBag.IsBackButtonEnabled = true;
+	ViewBag.PreviousPage = Url.Action("MyProfile");
+}
+<md:dialog isFullScreen="false" type="confirmation">
+	<form action="@Url.Action("EditPreferences")" method="post">
+		<md:dcontentarea>
+			<md:h6>@changePreferences</md:h6>
+			@Html.MakeDropDown(MaterialHtmlHelperExtensions.MaterialTextfieldType.Filled, model => model.PreferredCurrency, currencies, i => i.DisplayName, Model?.PreferredCurrency?.Id)
+			@Html.MakeDropDown(MaterialHtmlHelperExtensions.MaterialTextfieldType.Filled, model => model.PreferredLanguage, languages, i => i.DisplayName, Model?.PreferredLanguage?.Id)
+		</md:dcontentarea>
+		<md:dactionarea alignment="horizontal">
+			<md:dbutton>
+				<button>@update</button>
+			</md:dbutton>
+		</md:dactionarea>
+	</form>
+</md:dialog>

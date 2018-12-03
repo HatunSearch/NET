@@ -1,0 +1,12 @@
+﻿md\:paper { margin-top: 8px; }
+md\:paper > * {
+	display: table-cell;
+	vertical-align: middle;
+}
+md\:paper > md\:image {
+	height: 24px;
+	margin-right: 16px;
+	width: 24px;
+}
+md\:paper > md\:image > svg > path { fill: rgba(0, 0, 0, 0.6); }
+md\:paper > md\:caption { padding-left: 4px; }

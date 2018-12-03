@@ -1,0 +1,28 @@
+﻿@using HatunSearch.Entities;
+@using HatunSearch.PartnersWeb.Globalization;
+@using HatunSearch.PartnersWeb.Helpers;
+@model PropertyPictureDTO
+@{
+	Layout = "~/Views/Management/Layout.cshtml";
+	LocalizationProvider localization = ViewBag.LocalizationProvider as LocalizationProvider;
+	string add = localization["Add"], addAPropertyPicture = localization["AddAPropertyPicture"];
+	ViewBag.Title = addAPropertyPicture;
+	ViewBag.AdditionalStylesheets = new string[] { "Management", "ManagementSales.AddPropertyPicture" };
+	ViewBag.IsBackButtonEnabled = true;
+	ViewBag.PreviousPage = Url.Action("ViewProperty", new { id = (Guid)ViewBag.PropertyId });
+}
+<md:dialog isFullScreen="false" type="confirmation">
+	<form action="@Url.Action("EditPropertyPicture")" method="post" enctype="multipart/form-data">
+		<md:dcontentarea>
+			<md:h6>@addAPropertyPicture</md:h6>
+			<md:subtitle2>@localization["Picture"]</md:subtitle2>
+			<input name="Picture" type="file" />
+			@Html.MakeTextfield(MaterialHtmlHelperExtensions.MaterialTextfieldType.Filled, model => model.Description, Model?.Description)
+		</md:dcontentarea>
+		<md:dactionarea alignment="horizontal">
+			<md:dbutton>
+				<button>@add</button>
+			</md:dbutton>
+		</md:dactionarea>
+	</form>
+</md:dialog>

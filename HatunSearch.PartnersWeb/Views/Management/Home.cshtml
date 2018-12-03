@@ -1,0 +1,73 @@
+﻿@using HatunSearch.Entities;
+@using HatunSearch.PartnersWeb.Globalization;
+@{
+	Layout = "~/Views/Management/Layout.cshtml";
+	LocalizationProvider localization = ViewBag.LocalizationProvider as LocalizationProvider;
+	PartnerDTO account = ViewBag.Account as PartnerDTO;
+	string publishAProperty = localization["PublishAProperty"], publishedProperties = localization["PublishedProperties"], thereAreNoPublishedProperties = localization["ThereAreNoPublishedProperties"],
+		thereAreNoUnansweredCustomerQuestions = localization["ThereAreNoUnansweredCustomerQuestions"], unansweredCustomerQuestionsText = localization["UnansweredCustomerQuestions"],
+		viewAllProperties = localization["ViewAllProperties"], viewAllQuestions = localization["ViewAllQuestions"], welcomePartner = localization["WelcomePartner"];
+	List<PropertyDTO> properties = account.Properties.Where(i => i.HasBeenPaid).OrderBy(i => i.Name).ThenBy(i => i.Country.DisplayName.Value).ThenBy(i => i.Region.DisplayName.Value).
+		ThenBy(i => i.Province.DisplayName.Value).ThenBy(i => i.District.DisplayName.Value).Take(5).ToList();
+	List<CustomerQuestionDTO> unansweredCustomerQuestions = account.CustomerQuestions.Where(i => i.Answer == null).OrderByDescending(i => i.QuestionTimeStamp).Take(5).ToList();
+	bool areThereUnansweredCustomerQuestions = unansweredCustomerQuestions.Count > 0;
+	ViewBag.Title = localization["Home"];
+	ViewBag.AdditionalStylesheets = new string[] { "Management", "Management.Home" };
+	ViewBag.AdditionalScripts = new string[] { "PartnersWeb.Management" };
+}
+<md:paper>
+	<md:h5>@string.Format(welcomePartner, account.FirstName)</md:h5>
+</md:paper>
+<md:paper>
+	<md:card>
+		@{ bool areThereProperties = properties.Count > 0; }
+		<md:ccontentarea>
+			<md:h5>@publishedProperties</md:h5>
+			@if (areThereProperties)
+			{
+				<md:list>
+					@foreach (PropertyDTO property in properties)
+					{
+						<md:litem type="one-line" urlaction="@Url.Action("ViewProperty", "ManagementSales", new { id = property.Id })">
+							<md:litext>
+								<md:litprimary>@property.Name</md:litprimary>
+							</md:litext>
+						</md:litem>
+					}
+				</md:list>
+			}
+			else { <md:body1>@thereAreNoPublishedProperties</md:body1>}
+		</md:ccontentarea>
+		<md:cactionarea>
+			<md:cabutton>
+				@if (areThereProperties) { <a href="@Url.Action("Properties", "ManagementSales")">@viewAllProperties</a> }
+				else { <a href="@Url.Action("AddProperty", "ManagementSales")">@publishAProperty</a> }
+			</md:cabutton>
+		</md:cactionarea>
+	</md:card>
+	<md:card>
+		<md:ccontentarea>
+			<md:h5>@unansweredCustomerQuestionsText</md:h5>
+			@if (areThereUnansweredCustomerQuestions)
+			{
+				<md:list>
+					@foreach (CustomerQuestionDTO unansweredCustomerQuestion in unansweredCustomerQuestions)
+					{
+						<md:litem type="one-line" urlaction="@Url.Action("ViewCustomerQuestion", "ManagementSales", new { id = unansweredCustomerQuestion.Id })">
+							<md:litext>
+								<md:litprimary>@unansweredCustomerQuestion.Question</md:litprimary>
+							</md:litext>
+						</md:litem>
+					}
+				</md:list>
+			}
+			else { <md:body1>@thereAreNoUnansweredCustomerQuestions</md:body1>}
+		</md:ccontentarea>
+		<md:cactionarea>
+			<md:cabutton>
+				<a href="@Url.Action("CustomersQuestions", "ManagementSales")">@viewAllQuestions</a>
+			</md:cabutton>
+		</md:cactionarea>
+	</md:card>
+</md:paper>
+<script>HatunSearch.PartnersWeb.Management.Home.Start()</script>

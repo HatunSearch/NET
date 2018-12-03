@@ -1,0 +1,30 @@
+﻿@using HatunSearch.Entities;
+@using HatunSearch.PartnersWeb.Globalization;
+@using HatunSearch.PartnersWeb.Helpers;
+@model PropertyFeatureDetailDTO
+@{
+	Layout = "~/Views/Management/Layout.cshtml";
+	LocalizationProvider localization = ViewBag.LocalizationProvider as LocalizationProvider;
+	string editAPropertyFeature = localization["EditAPropertyFeature"], update = localization["Update"];
+	IEnumerable<PropertyFeatureDTO> features = ViewBag.Features as IEnumerable<PropertyFeatureDTO>;
+	ViewBag.Title = editAPropertyFeature;
+	ViewBag.AdditionalStylesheets = new string[] { "Management" };
+	ViewBag.IsBackButtonEnabled = true;
+	ViewBag.PreviousPage = Url.Action("ViewProperty", new { id = (Guid)ViewBag.PropertyId });
+}
+<md:dialog isFullScreen="false" type="confirmation">
+	<form action="@Url.Action("EditPropertyFeature")" method="post">
+		<md:dcontentarea>
+			<md:h6>@editAPropertyFeature</md:h6>
+			<md:subtitle2>@localization[Html.DisplayNameFor(model => model.Feature).ToString()]</md:subtitle2>
+			<md:subtitle1>@Model.Feature.DisplayName</md:subtitle1>
+			<input name="Feature" type="Hidden" value="@Model.Feature.Id" />
+			@Html.MakeTextfield(MaterialHtmlHelperExtensions.MaterialTextfieldType.Filled, model => model.Value, Model?.Value)
+		</md:dcontentarea>
+		<md:dactionarea alignment="horizontal">
+			<md:dbutton>
+				<button>@update</button>
+			</md:dbutton>
+		</md:dactionarea>
+	</form>
+</md:dialog>

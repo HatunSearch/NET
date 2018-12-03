@@ -1,0 +1,20 @@
+﻿md\:content {
+	padding-bottom: 16px;
+	padding-left: 16px;
+	padding-right: 16px;
+	padding-top: 16px;
+}
+md\:content > md\:subtitle1:not(:first-child) { margin-bottom: 8px; }
+md\:content > md\:h6 {
+	margin-bottom: 4px;
+	margin-top: 4px;
+}
+md\:paper {
+	margin-left: -8px;
+	overflow-y: auto;
+}
+md\:paper > * { float: left; }
+md\:list {
+	margin-left: -16px;
+	margin-right: -16px;
+}

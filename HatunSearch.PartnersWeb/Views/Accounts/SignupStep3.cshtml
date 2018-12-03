@@ -1,0 +1,41 @@
+﻿@using HatunSearch.Entities;
+@using HatunSearch.Entities.Data;
+@using HatunSearch.PartnersWeb.Globalization;
+@using HatunSearch.PartnersWeb.Helpers;
+@model PartnerCompanyInfoDTO
+@{
+	Layout = "~/Views/Layout.cshtml";
+	LocalizationProvider localization = ViewBag.LocalizationProvider as LocalizationProvider;
+	IEnumerable<CountryDTO> countries = (ViewBag.Countries as IEnumerable<CountryDTO>)?.ToList();
+	string createANewAccount = localization["CreateANewAccount"], next = localization["Next"], step3CompanyInfo = localization["Step3CompanyInfo"];
+	IEnumerable<RegionDTO> regions = (Model?.Country?.Regions ?? countries.FirstOrDefault().Regions).ToList();
+	IEnumerable<ProvinceDTO> provinces = (Model?.Region?.Provinces ?? regions.FirstOrDefault().Provinces).ToList();
+	IEnumerable<DistrictDTO> districts = Model?.Province?.Districts ?? provinces.FirstOrDefault().Districts;
+	ViewBag.Title = createANewAccount;
+	ViewBag.AdditionalStylesheets = new string[] { "Accounts", "Accounts.Signup" };
+	ViewBag.AdditionalScripts = new string[] { "PartnersWeb.Accounts" };
+	ViewBag.AddAScrim = true;
+}
+<md:dialog isFullScreen="false" type="confirmation">
+	<form action="@Url.Action("SignupStep3")" method="post">
+		<md:dcontentarea>
+			<img src="~/png/Logo_361x86.png" />
+			<md:h6>@createANewAccount</md:h6>
+			<md:subtitle2>@step3CompanyInfo</md:subtitle2>
+			@Html.MakeTextfield(MaterialHtmlHelperExtensions.MaterialTextfieldType.Filled, model => model.Name, Model?.Name)
+			@Html.MakeTextfield(MaterialHtmlHelperExtensions.MaterialTextfieldType.Filled, model => model.Address, Model?.Address)
+			@Html.MakeDropDown(MaterialHtmlHelperExtensions.MaterialTextfieldType.Filled, model => model.Country, countries, i => i.DisplayName, Model?.Country?.Id)
+			@Html.MakeDropDown(MaterialHtmlHelperExtensions.MaterialTextfieldType.Filled, model => model.Region, regions, i => i.DisplayName, Model?.Region?.Id as CompositeKey<CountryDTO, string>)
+			@Html.MakeDropDown(MaterialHtmlHelperExtensions.MaterialTextfieldType.Filled, model => model.Province, provinces, i => i.DisplayName, Model?.Province?.Id as CompositeKey<CountryDTO, string>)
+			@Html.MakeDropDown(MaterialHtmlHelperExtensions.MaterialTextfieldType.Filled, model => model.District, districts, i => i.DisplayName, Model?.District?.Id as CompositeKey<CountryDTO, string>)
+			@Html.MakeTextfield(MaterialHtmlHelperExtensions.MaterialTextfieldType.Filled, model => model.PhoneNumber, Model?.PhoneNumber)
+			@Html.MakeTextfield(MaterialHtmlHelperExtensions.MaterialTextfieldType.Filled, model => model.Website, Model?.Website)
+		</md:dcontentarea>
+		<md:dactionarea alignment="horizontal">
+			<md:dbutton>
+				<button>@next</button>
+			</md:dbutton>
+		</md:dactionarea>
+	</form>
+</md:dialog>
+<script>HatunSearch.PartnersWeb.Accounts.SignupStep3.Start("@Url.Action("Get", "CountriesAPI")");</script>

@@ -1,0 +1,23 @@
+﻿@using HatunSearch.Entities;
+@using HatunSearch.PartnersWeb.Globalization;
+@model PartnerEmailVerificationDTO
+@{
+	Layout = "~/Views/Layout.cshtml";
+	LocalizationProvider localization = ViewBag.LocalizationProvider as LocalizationProvider;
+	string closeAllOpenedPages = localization["CloseAllOpenedPages"], goToLogin = localization["GoToLogin"], youHaveBeenLoggedOut = localization["YouHaveBeenLoggedOut"];
+	ViewBag.Title = youHaveBeenLoggedOut;
+	ViewBag.AdditionalStylesheets = new string[] { "Accounts" };
+	ViewBag.AddAScrim = true;
+}
+<md:dialog isFullScreen="false" type="confirmation">
+	<md:dcontentarea>
+		<img src="~/png/Logo_361x86.png" />
+		<md:h6>@youHaveBeenLoggedOut</md:h6>
+		<md:body1>@closeAllOpenedPages</md:body1>
+	</md:dcontentarea>
+	<md:dactionarea alignment="horizontal">
+		<md:dbutton>
+			<a href="@Url.Action("Login")">@goToLogin</a>
+		</md:dbutton>
+	</md:dactionarea>
+</md:dialog>

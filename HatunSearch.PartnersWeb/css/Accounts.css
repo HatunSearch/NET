@@ -1,0 +1,24 @@
+﻿md\:scrim:first-of-type { background-color: rgba(0, 0, 0, 0.125) !important; }
+md\:scrim:first-of-type > md\:dialog md\:dcontentarea { padding-bottom: 8px; }
+md\:scrim:first-of-type > md\:dialog md\:dcontentarea > *:not(:last-child) { margin-bottom: 4px; }
+md\:dcontentarea > img { width: 181px; }
+md\:dcontentarea > md\:caption { margin-top: 16px; }
+md\:dactionarea { padding-right: 16px !important; }
+
+@media (max-width: 640px) {
+	md\:scrim:first-of-type > md\:dialog {
+		bottom: 0;
+		min-height: 100vh;
+		left: 0 !important;
+		right: 0;
+		top: 0 !important;
+		transform: unset !important;
+	}
+	md\:scrim:first-of-type, md\:scrim:first-of-type > md\:dialog { position: unset !important; }
+}
+@media (min-width: 641px) {
+	md\:scrim:first-of-type > md\:dialog {
+		max-width: 360px;
+		width: 100%;
+	}
+}

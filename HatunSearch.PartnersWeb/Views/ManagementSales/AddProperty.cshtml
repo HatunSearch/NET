@@ -1,0 +1,40 @@
+﻿@using HatunSearch.Entities;
+@using HatunSearch.Entities.Data;
+@using HatunSearch.PartnersWeb.Globalization;
+@using HatunSearch.PartnersWeb.Helpers;
+@model PropertyDTO
+@{
+	Layout = "~/Views/Management/Layout.cshtml";
+	LocalizationProvider localization = ViewBag.LocalizationProvider as LocalizationProvider;
+	string add = localization["Add"], addAProperty = localization["AddAProperty"];
+	IEnumerable<CountryDTO> countries = (ViewBag.Countries as IEnumerable<CountryDTO>)?.ToList();
+	IEnumerable<PropertyTypeDTO> types = ViewBag.Types as IEnumerable<PropertyTypeDTO>;
+	IEnumerable<RegionDTO> regions = (Model?.Country?.Regions ?? countries.FirstOrDefault().Regions).ToList();
+	IEnumerable<ProvinceDTO> provinces = (Model?.Region?.Provinces ?? regions.FirstOrDefault().Provinces).ToList();
+	IEnumerable<DistrictDTO> districts = Model?.Province?.Districts ?? provinces.FirstOrDefault().Districts;
+	ViewBag.Title = addAProperty;
+	ViewBag.AdditionalStylesheets = new string[] { "Management", "ManagementSales.AddProperty" };
+	ViewBag.AdditionalScripts = new string[] { "PartnersWeb.Management" };
+	ViewBag.IsBackButtonEnabled = true;
+	ViewBag.PreviousPage = Url.Action("Properties");
+}
+<md:dialog isFullScreen="false" type="confirmation">
+	<form action="@Url.Action("AddProperty")" method="post">
+		<md:dcontentarea>
+			<md:h6>@addAProperty</md:h6>
+			@Html.MakeTextfield(MaterialHtmlHelperExtensions.MaterialTextfieldType.Filled, model => model.Name, Model?.Name)
+			@Html.MakeDropDown(MaterialHtmlHelperExtensions.MaterialTextfieldType.Filled, model => model.Type, types, i => i.DisplayName, Model?.Type?.Id ?? 0)
+			@Html.MakeTextfield(MaterialHtmlHelperExtensions.MaterialTextfieldType.Filled, model => model.Address, Model?.Address)
+			@Html.MakeDropDown(MaterialHtmlHelperExtensions.MaterialTextfieldType.Filled, model => model.Country, countries, i => i.DisplayName, Model?.Country?.Id)
+			@Html.MakeDropDown(MaterialHtmlHelperExtensions.MaterialTextfieldType.Filled, model => model.Region, regions, i => i.DisplayName, Model?.Region?.Id as CompositeKey<CountryDTO, string>)
+			@Html.MakeDropDown(MaterialHtmlHelperExtensions.MaterialTextfieldType.Filled, model => model.Province, provinces, i => i.DisplayName, Model?.Province?.Id as CompositeKey<CountryDTO, string>)
+			@Html.MakeDropDown(MaterialHtmlHelperExtensions.MaterialTextfieldType.Filled, model => model.District, districts, i => i.DisplayName, Model?.District?.Id as CompositeKey<CountryDTO, string>)
+		</md:dcontentarea>
+		<md:dactionarea alignment="horizontal">
+			<md:dbutton>
+				<button>@add</button>
+			</md:dbutton>
+		</md:dactionarea>
+	</form>
+</md:dialog>
+<script>HatunSearch.PartnersWeb.Management.Sales.AddProperty.Start("@Url.Action("Get", "CountriesAPI")");</script>

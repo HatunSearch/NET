@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<localization>
+	<language id="es">
+		<item key="DateTimeFormat" value="dd 'de' MMMM 'de' yyyy 'a las' HH:mm:ss" />
+		<item key="Details" value="Detalles" />
+		<item key="EmailVerificationSubject" value="Verifique su dirección de correo electrónico" />
+		<item key="PaymentMethod" value="Método de pago" />
+		<item key="YouWillGetAnEmailNotificationAboutThisAction" value="Recibirás una notificación por correo electrónico con información sobre esta acción." />
+	</language>
+</localization>

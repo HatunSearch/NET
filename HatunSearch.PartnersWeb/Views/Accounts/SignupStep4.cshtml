@@ -1,0 +1,30 @@
+﻿@using HatunSearch.Entities;
+@using HatunSearch.PartnersWeb.Globalization;
+@using HatunSearch.PartnersWeb.Helpers;
+@model PartnerPreferencesDTO
+@{
+	Layout = "~/Views/Layout.cshtml";
+	LocalizationProvider localization = ViewBag.LocalizationProvider as LocalizationProvider;
+	string createANewAccount = localization["CreateANewAccount"], finish = localization["Finish"], step4Preferences = localization["Step4Preferences"];
+	IEnumerable<CurrencyDTO> currencies = ViewBag.Currencies as IEnumerable<CurrencyDTO>;
+	IEnumerable<LanguageDTO> languages = ViewBag.Languages as IEnumerable<LanguageDTO>;
+	ViewBag.Title = createANewAccount;
+	ViewBag.AdditionalStylesheets = new string[] { "Accounts", "Accounts.Signup" };
+	ViewBag.AddAScrim = true;
+}
+<md:dialog isFullScreen="false" type="confirmation">
+	<form action="@Url.Action("SignupStep4")" method="post">
+		<md:dcontentarea>
+			<img src="~/png/Logo_361x86.png" />
+			<md:h6>@createANewAccount</md:h6>
+			<md:subtitle2>@step4Preferences</md:subtitle2>
+			@Html.MakeDropDown(MaterialHtmlHelperExtensions.MaterialTextfieldType.Filled, model => model.PreferredCurrency, currencies, i => i.DisplayName, Model?.PreferredCurrency?.Id)
+			@Html.MakeDropDown(MaterialHtmlHelperExtensions.MaterialTextfieldType.Filled, model => model.PreferredLanguage, languages, i => i.DisplayName, Model?.PreferredLanguage?.Id)
+		</md:dcontentarea>
+		<md:dactionarea alignment="horizontal">
+			<md:dbutton>
+				<button>@finish</button>
+			</md:dbutton>
+		</md:dactionarea>
+	</form>
+</md:dialog>

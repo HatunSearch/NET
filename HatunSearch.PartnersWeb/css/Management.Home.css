@@ -1,0 +1,56 @@
+﻿md\:paper:first-of-type {
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	border: none;
+	border-collapse: collapse;
+	display: table;
+	height: 16.6667vw;
+	min-height: 240px;
+	position: relative;
+	width: 100%;
+}
+md\:paper:first-of-type > md\:h5 {
+	color: #FFFFFF;
+	display: table-cell;
+	padding-bottom: 24px;
+	padding-left: 24px;
+	padding-right: 24px;
+	vertical-align: bottom;
+}
+md\:paper[timeofday="afternoon"] { background-image: url("/jpg/Management.Home$Afternoon.jpg"); }
+md\:paper[timeofday="morning"] { background-image: url("/jpg/Management.Home$Morning.jpg"); }
+md\:paper[timeofday="night"] { background-image: url("/jpg/Management.Home$Night.jpg"); }
+md\:paper:last-of-type { overflow-y: auto; }
+md\:ccontentarea { padding-bottom: unset; }
+md\:ccontentarea > *:not(:last-child) { margin-bottom: 8px; }
+md\:list {
+	margin-left: -16px;
+	margin-right: -16px;
+}
+
+@media (max-width: 768px) {
+	md\:app[theme="light"] md\:content { background-color: #FFFFFF; }
+	md\:card {
+		margin-bottom: 0;
+		margin-left: 0;
+		margin-right: 0;
+	}
+	md\:ccontentarea {
+		padding-left: 24px;
+		padding-right: 24px;
+	}
+	md\:card:first-of-type > md\:ccontentarea { padding-top: 24px; }
+	md\:cactionarea {
+		padding-left: 16px;
+		padding-right: 16px;
+	}
+}
+@media (min-width: 769px) {
+	md\:paper:last-of-type { margin: 24px; }
+	md\:card {
+		float: left;
+		width: calc(50% - 16px);
+	}
+	md\:card:nth-of-type(2n + 1) { margin-right: 16px; }
+}

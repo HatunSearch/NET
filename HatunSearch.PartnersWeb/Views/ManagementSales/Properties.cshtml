@@ -1,0 +1,45 @@
+﻿@using HatunSearch.Entities;
+@using HatunSearch.PartnersWeb.Globalization;
+@{
+	Layout = "~/Views/Management/Layout.cshtml";
+	LocalizationProvider localization = ViewBag.LocalizationProvider as LocalizationProvider;
+	PartnerDTO account = ViewBag.Account as PartnerDTO;
+	string addAProperty = localization["AddAProperty"], inOrderToPublishAPropertyYouShouldAddItHere = localization["InOrderToPublishAPropertyYouShouldAddItHere"],
+		thereAreNoAddedProperties = localization["ThereAreNoAddedProperties"];
+	ICollection<PropertyDTO> properties = account.Properties.OrderBy(i => i.Name).ThenBy(i => i.Country.DisplayName.Value).ThenBy(i => i.Region.DisplayName.Value).
+		ThenBy(i => i.Province.DisplayName.Value).ThenBy(i => i.District.DisplayName.Value).ToList();
+	ViewBag.Title = localization["Properties"];
+	ViewBag.AdditionalStylesheets = new string[] { "Management", "ManagementSales.Properties" };
+}
+@if (properties.Count > 0)
+{
+	<md:list>
+		@foreach (PropertyDTO property in properties)
+		{
+			<md:litem type="two-line" urlaction="@Url.Action("ViewProperty", new { id = property.Id })">
+				<md:litext>
+					<md:litprimary>@property.Name</md:litprimary>
+					<md:litsecondary>@Html.Raw($"{property.District.DisplayName}, {property.Province.DisplayName}, {property.Region.DisplayName}, {property.Country.Id} | {localization[property.Status.ToString()]}")</md:litsecondary>
+				</md:litext>
+			</md:litem>
+		}
+	</md:list>
+	<md:floatingactionbutton type="regular" urlaction="@Url.Action("AddProperty")">
+		<md:icon>
+			<svg viewBox="0 0 24 24">
+				<path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" />
+			</svg>
+		</md:icon>
+	</md:floatingactionbutton>
+}
+else
+{
+	<md:paper>
+		<img src="~/png/Properties.Placeholder_256x256.png" />
+		<md:h5>@thereAreNoAddedProperties</md:h5>
+		<md:subtitle1>@inOrderToPublishAPropertyYouShouldAddItHere</md:subtitle1>
+		<md:button type="text">
+			<a href="@Url.Action("AddProperty")">@addAProperty</a>
+		</md:button>
+	</md:paper>
+}

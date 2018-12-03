@@ -1,0 +1,5 @@
+﻿md\:dcontentarea { padding-bottom: 8px; }
+md\:dcontentarea > md\:h6 { margin-bottom: 8px !important; }
+md\:dcontentarea > *:not(:last-child):not(md\:h6), md\:dcontentarea > md\:paper > *:not(:last-child), md\:dcontentarea > md\:caption { margin-bottom: 4px; }
+md\:dcontentarea > md\:caption { margin-top: 4px; }
+md\:dcontentarea > md\:caption > a { display: inline-block; }

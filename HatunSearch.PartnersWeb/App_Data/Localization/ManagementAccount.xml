@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<localization>
+	<language id="es">
+		<item key="AccessCredentials" value="Credenciales de acceso" />
+		<item key="AsSoonAsYouPurchaseAServiceYouWillSeeTheInvoiceHere" value="Tan pronto como pagues un servicio, podrás ver el recibo generado aquí." />
+		<item key="AddACreditCard" value="Añadir una tarjeta de crédito" />
+		<item key="CardHasAlreadyBeenAdded" value="La tarjeta ingresada ya ha sido ingresada anteriormente." />
+		<item key="CardHasBeenAdded" value="Se ha añadido una tarjeta de crédito." />
+		<item key="CardHasBeenDeleted" value="Se ha eliminado la tarjeta de crédito." />
+		<item key="CardInformation" value="Información de la tarjeta" />
+		<item key="CardInformationDisclaimer">
+			Para proteger su seguridad, no almacenamos la información de su tarjeta de crédito o débito en nuestros servidores directamente. Dicha información se almacena en los servidores
+			del procesador de pagos Stripe, una empresa estadounidense que cumple con la normativa PCI para el almacenamiento y procesamiento de información de pago sensible. Puede visitar
+			&lt;a href='https://stripe.com/es'>la página de la empresa&lt;/a> para más información.
+		</item>
+		<item key="CardIsNotCredit" value="La tarjeta ingresada no es de crédito." />
+		<item key="ChangePassword" value="Cambiar contraseña" />
+		<item key="ChangePasswordEmailSubject" value="Cambio de contraseña en su cuenta" />
+		<item key="ChangePasswordEmailTemplate">
+			&lt;!DOCTYPE html>
+			&lt;html>
+				&lt;head>
+					&lt;meta charset="utf-8">
+				&lt;/head>
+					&lt;body style="font-family: Roboto, 'Segoe UI', sans-serif; margin: 24px;">
+					&lt;img src="{0}" width="192" />
+					&lt;h3>Cambio de contraseña en su cuenta&lt;/h3>
+					&lt;p>¡Hola, {1}!&lt;/p>
+					&lt;p>Recientemente se ha cambiado su contraseña de su cuenta de Hatun Search. Por motivos de seguridad, le enviamos esta notificación para que, en caso usted no haya realizado dicho cambio, pueda comunicarse con nosotros para poder tomar medidas con el fin de proteger su cuenta.&lt;/p>
+					&lt;p>Si usted no realizó el cambio antes mencionado, por favor, escríbanos un mensaje a &lt;a href="mailto:support@hatunsearch.me">support@hatunsearch.me&lt;/a> indicándonos dicho inconveniente. Le brindaremos ayuda para recuperar el control de su cuenta.&lt;/p>
+					&lt;p>
+						Saludos,&lt;br>
+						Departamento de Atención al Cliente
+					&lt;/p>
+					&lt;p>Por favor, no responda directamente a este mensaje, ya que ha sido enviado desde un correo electrónico que no se supervisa.&lt;/p>
+				&lt;/body>
+			&lt;/html>
+		</item>
+		<item key="ChangePreferences" value="Cambiar preferencias" />
+		<item key="CompanyInfo" value="Información de la empresa" />
+		<item key="CompanyInfoHasBeenUpdated" value="Se ha actualizado la información de la empresa." />
+		<item key="Cost" value="Costo" />
+		<item key="CurrentPassword" value="Contraseña actual" />
+		<item key="CurrentPasswordDoesntMatch" value="La contraseña ingresada no coincide con la contraseña actual de su cuenta." />
+		<item key="DateFormat" value="dd 'de' MMMM 'de' yyyy" />
+		<item key="DeleteACreditCard" value="Eliminar una tarjeta de crédito" />
+		<item key="EditCompanyInfo" value="Editar información de la empresa" />
+		<item key="EditInformation" value="Editar información" />
+		<item key="EditPersonalInfo" value="Editar información personal" />
+		<item key="EmailVerificationTemplate">
+			&lt;!DOCTYPE html>
+			&lt;html>
+				&lt;head>
+					&lt;meta charset="utf-8">
+				&lt;/head>
+				&lt;body style="font-family: Roboto, 'Segoe UI', sans-serif; margin: 24px;">
+					&lt;img src="{0}" width="192" />
+					&lt;h3>Verifique su dirección de correo electrónico&lt;/h3>
+					&lt;p>¡Hola, {1}!&lt;/p>
+					&lt;p>Usted ha actualizado recientemente la dirección de correo electrónico de su cuenta de Hatun Search. Por motivos de seguridad, necesitamos comprobar que esta dirección le pertenece antes de permitirle iniciar sesión de nuevo. Tras la activación, le enviaremos información urgente relacionada con su cuenta o nuestros servicios aquí.&lt;/p>
+					&lt;p>Ingrese al siguiente enlace para confirmar su dirección de correo electrónico:&lt;/p>
+					&lt;table>
+						&lt;tbody>
+							&lt;tr>
+								&lt;td style="background: blue; padding: 12px 16px; vertical-align: middle;">
+									&lt;a href="{2}" style="color: white; font-weight: bold; text-decoration: none;">Verificar mi dirección de correo electrónico&lt;/a>
+								&lt;/td>
+							&lt;/tr>
+						&lt;/tbody>
+					&lt;/table>
+					&lt;p>Por favor, no responda a este mensaje, ya que se ha enviado desde un correo electrónico que no se supervisa.&lt;/p>
+				&lt;/body>
+			&lt;/html>
+		</item>
+		<item key="InvoiceFromDate" value="Recibo del {0}" />
+		<item key="MaximumAmountOfCardsReached" value="Se ha alcanzado el límite máximo de diez (10) tarjetas de crédito por cuenta." />
+		<item key="NewAndCurrentPasswordAreTheSame" value="La nueva contraseña es igual a la actual." />
+		<item key="NewPassword" value="Nueva contraseña" />
+		<item key="PasswordHasBeenChanged" value="Se ha cambiado la contraseña." />
+		<item key="PersonalInfo" value="Información personal" />
+		<item key="PersonalInfoHasBeenUpdated" value="Se ha actualizado la información personal." />
+		<item key="Preferences" value="Preferencias" />
+		<item key="PreferencesHaveBeenUpdated" value="Se han actualizado las preferencias." />
+		<item key="ThereAreNoAddedCreditCards" value="No hay tarjetas de crédito añadidas" />
+		<item key="ThereAreNoPreviouslyPurchasedServices" value="No hay pagos de servicios previos" />
+		<item key="ToPublishAPropertyYouNeedAnAddedCreditCard" value="Para publicar tus inmuebles en Hatun Search, necesitas añadir una tarjeta de crédito." />
+		<item key="TotalCost" value="Costo total" />
+		<item key="ViewInvoice" value="Ver recibo" />
+		<item key="YouWillNeedToVerifyYourAccountIfYouChangeYourEmailAddress" value="Si cambias tu dirección de correo electrónico, deberás verificarla. Tu sesión se cerrará." />
+	</language>
+</localization>

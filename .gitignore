@@ -1,0 +1,6 @@
+.vs/*
+HatunSearch.PartnersWeb/Web.config
+HatunSearch.PartnersWeb/Properties/PublishProfiles/*
+packages/*
+*/bin
+*/obj

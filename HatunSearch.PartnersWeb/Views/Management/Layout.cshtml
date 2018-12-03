@@ -1,0 +1,107 @@
+﻿@using HatunSearch.Entities;
+@using HatunSearch.PartnersWeb.Globalization;
+@{
+	Layout = "~/Views/Layout.cshtml";
+	LocalizationProvider localization = ViewBag.LocalizationProvider as LocalizationProvider;
+	PartnerDTO account = ViewBag.Account as PartnerDTO;
+	string accountText = localization["Account"], actionName = ViewBag.ActionName as string, controllerName = ViewBag.ControllerName as string, customerQuestions = localization["CustomerQuestions"],
+		home = localization["Home"], logout = localization["Logout"], myCards = localization["MyCards"], myInvoices = localization["MyInvoices"], myProfile = localization["MyProfile"],
+		previousPage = ViewBag.PreviousPage as string, properties = localization["Properties"], result = ViewBag.Result as string, sales = localization["Sales"], title = ViewBag.Title as string;
+	bool isBackButtonEnabled = ViewBag.IsBackButtonEnabled as bool? ?? false;
+}
+<md:appbar>
+	@if (!isBackButtonEnabled)
+	{
+		<md:abbutton action="menu">
+			<svg viewBox="0 0 24 24">
+				<path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+			</svg>
+		</md:abbutton>
+	}
+	else
+	{
+		<md:abbutton action="back" urlaction="@previousPage">
+			<svg viewBox="0 0 24 24">
+				<path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" />
+			</svg>
+		</md:abbutton>
+	}
+	<md:abtitle>
+		<md:h6>@title</md:h6>
+	</md:abtitle>
+</md:appbar>
+<md:content>
+	@RenderBody()
+</md:content>
+@if (!isBackButtonEnabled)
+{
+	<md:scrim isOpened="false">
+		<md:navigationdrawer alignment="left" isOpened="false">
+			<md:ndheader>
+				<md:h6>@account.FullName</md:h6>
+				<md:ndhsubtext>@account.EmailAddress</md:ndhsubtext>
+			</md:ndheader>
+			<md:nditems>
+				<md:nditem isActivated="@((controllerName == "Management" && actionName == "Home").ToString().ToLower())" urlaction="@Url.Action("Home", "Management")">
+					<md:ndiicon>
+						<svg viewBox="0 0 24 24">
+							<path d="M10,20V14H14V20H19V12H22L12,3L2,12H5V20H10Z" />
+						</svg>
+					</md:ndiicon>
+					<md:nditext>@home</md:nditext>
+				</md:nditem>
+				<md:nditem urlaction="@Url.Action("Logout", "Accounts")">
+					<md:ndiicon>
+						<svg viewBox="0 0 24 24">
+							<path d="M16,17V14H9V10H16V7L21,12L16,17M14,2A2,2 0 0,1 16,4V6H14V4H5V20H14V18H16V20A2,2 0 0,1 14,22H5A2,2 0 0,1 3,20V4A2,2 0 0,1 5,2H14Z" />
+						</svg>
+					</md:ndiicon>
+					<md:nditext>@logout</md:nditext>
+				</md:nditem>
+				<md:ndlabel>@accountText</md:ndlabel>
+				<md:nditem isActivated="@((controllerName == "ManagementAccount" && actionName == "MyProfile").ToString().ToLower())" urlaction="@Url.Action("MyProfile", "ManagementAccount")">
+					<md:ndiicon>
+						<svg viewBox="0 0 24 24">
+							<path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
+						</svg>
+					</md:ndiicon>
+					<md:nditext>@myProfile</md:nditext>
+				</md:nditem>
+				<md:nditem isActivated="@((controllerName == "ManagementAccount" && actionName == "MyCards").ToString().ToLower())" urlaction="@Url.Action("MyCards", "ManagementAccount")">
+					<md:ndiicon>
+						<svg viewBox="0 0 24 24">
+							<path d="M21,8V6H7V8H21M21,16V11H7V16H21M21,4A2,2 0 0,1 23,6V16A2,2 0 0,1 21,18H7C5.89,18 5,17.1 5,16V6C5,4.89 5.89,4 7,4H21M3,20H18V22H3A2,2 0 0,1 1,20V9H3V20Z" />
+						</svg>
+					</md:ndiicon>
+					<md:nditext>@myCards</md:nditext>
+				</md:nditem>
+				<md:nditem isActivated="@((controllerName == "ManagementAccount" && actionName == "MyInvoices").ToString().ToLower())" urlaction="@Url.Action("MyInvoices", "ManagementAccount")">
+					<md:ndiicon>
+						<svg viewBox="0 0 24 24">
+							<path d="M3,22L4.5,20.5L6,22L7.5,20.5L9,22L10.5,20.5L12,22L13.5,20.5L15,22L16.5,20.5L18,22L19.5,20.5L21,22V2L19.5,3.5L18,2L16.5,3.5L15,2L13.5,3.5L12,2L10.5,3.5L9,2L7.5,3.5L6,2L4.5,3.5L3,2M18,9H6V7H18M18,13H6V11H18M18,17H6V15H18V17Z" />
+						</svg>
+					</md:ndiicon>
+					<md:nditext>@myInvoices</md:nditext>
+				</md:nditem>
+				<md:ndlabel>@sales</md:ndlabel>
+				<md:nditem isActivated="@((controllerName == "ManagementSales" && actionName == "Properties").ToString().ToLower())" urlaction="@Url.Action("Properties", "ManagementSales")">
+					<md:ndiicon>
+						<svg viewBox="0 0 24 24">
+							<path d="M18,15H16V17H18M18,11H16V13H18M20,19H12V17H14V15H12V13H14V11H12V9H20M10,7H8V5H10M10,11H8V9H10M10,15H8V13H10M10,19H8V17H10M6,7H4V5H6M6,11H4V9H6M6,15H4V13H6M6,19H4V17H6M12,7V3H2V21H22V7H12Z" />
+						</svg>
+					</md:ndiicon>
+					<md:nditext>@properties</md:nditext>
+				</md:nditem>
+				<md:nditem isActivated="@((controllerName == "ManagementSales" && actionName == "CustomersQuestions").ToString().ToLower())" urlaction="@Url.Action("CustomersQuestions", "ManagementSales")">
+					<md:ndiicon>
+						<svg viewBox="0 0 24 24">
+							<path d="M17,12V3A1,1 0 0,0 16,2H3A1,1 0 0,0 2,3V17L6,13H16A1,1 0 0,0 17,12M21,6H19V15H6V17A1,1 0 0,0 7,18H18L22,22V7A1,1 0 0,0 21,6Z" />
+						</svg>
+					</md:ndiicon>
+					<md:nditext>@customerQuestions</md:nditext>
+				</md:nditem>
+			</md:nditems>
+		</md:navigationdrawer>
+	</md:scrim>
+}
+@if (result != null) { <script>MaterialDesign.Snackbars.Show("@Html.Raw(localization[result])");</script> }

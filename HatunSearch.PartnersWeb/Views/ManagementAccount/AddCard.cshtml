@@ -1,0 +1,37 @@
+﻿@using HatunSearch.PartnersWeb;
+@using HatunSearch.PartnersWeb.Globalization;
+@{
+	Layout = "~/Views/Management/Layout.cshtml";
+	LocalizationProvider localization = ViewBag.LocalizationProvider as LocalizationProvider;
+	string add = localization["Add"], addACreditCard = localization["AddACreditCard"], cardInformation = localization["CardInformation"],
+		cardInformationDisclaimer = localization["CardInformationDisclaimer"], currentLanguage = ViewBag.CurrentLanguage as string, stripePublishableKey = WebApp.StripePublishableKey;
+	IDictionary<string, string> errors = ViewBag.Errors as IDictionary<string, string>;
+	bool hasErrors = errors?.ContainsKey("TokenId") ?? false;
+	Uri requestUrl = Request.Url;
+	string baseUrl = new UriBuilder(requestUrl.Scheme, requestUrl.Host, requestUrl.Port).ToString();
+	ViewBag.Title = addACreditCard;
+	ViewBag.AdditionalStylesheets = new string[] { "Management", "ManagementAccount.AddCard" };
+	ViewBag.AdditionalScripts = new string[] { "PartnersWeb.Management" };
+	ViewBag.ExternalScripts = new string[] { "https://js.stripe.com/v3/" };
+	ViewBag.IsBackButtonEnabled = true;
+	ViewBag.PreviousPage = Url.Action("MyCards");
+}
+<md:dialog isFullScreen="false" type="confirmation">
+	<form action="@Url.Action("AddCard")" method="post">
+		<md:dcontentarea>
+			<md:h6>@addACreditCard</md:h6>
+			<md:paper>
+				<md:caption>@cardInformation</md:caption>
+				<md:paper id="txtTokenId"></md:paper>
+				@if (hasErrors) { <md:helpertext hasErrors="true">@localization[errors["TokenId"]]</md:helpertext> }
+			</md:paper>
+			<md:caption>@Html.Raw(cardInformationDisclaimer)</md:caption>
+		</md:dcontentarea>
+		<md:dactionarea alignment="horizontal">
+			<md:dbutton>
+				<button>@add</button>
+			</md:dbutton>
+		</md:dactionarea>
+	</form>
+</md:dialog>
+<script>HatunSearch.PartnersWeb.Management.Account.AddCard.Start("@currentLanguage", "@stripePublishableKey", "@baseUrl");</script>

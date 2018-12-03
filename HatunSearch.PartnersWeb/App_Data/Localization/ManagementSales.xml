@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<localization>
+	<language id="es">
+		<item key="AddAProperty" value="Agregar un inmueble" />
+		<item key="AddAPropertyFeature" value="Agregar una característica de inmueble" />
+		<item key="AddAPropertyPicture" value="Agregar una imagen de inmueble" />
+		<item key="AsSoonAsACustomerAskYouSomethingYouWillSeeTheQuestionHere" value="Tan pronto como un cliente haga una pregunta, la verás aquí." />
+		<item key="AnswerQuestion" value="Responder a la pregunta" />
+		<item key="AnswerQuestionEmailSubject" value="Respuesta a su pregunta sobre el inmueble {0}" />
+		<item key="AnswerQuestionEmailTemplate">
+			&lt;!DOCTYPE html>
+			&lt;html>
+				&lt;head>
+					&lt;meta charset="utf-8">
+				&lt;/head>
+				&lt;body style="font-family: Roboto, 'Segoe UI', sans-serif; margin: 24px;">
+					&lt;img src="{0}" width="192" />
+					&lt;h3>Respuesta a su pregunta sobre el inmueble {1}&lt;/h3>
+					&lt;p>¡Hola, {2}!&lt;/p>
+					&lt;p>El socio que publicó el inmueble {1}, ha respondido a tu pregunta. Debido a esto, te enviamos el resumen de la conversación en este mensaje para que lo puedas conservar.&lt;/p>
+					&lt;p>
+						&lt;b>Pregunta&lt;/b>&lt;br>
+						{3}&lt;br>
+						&lt;b>Respuesta&lt;/b>&lt;br>
+						{4}&lt;br>
+					&lt;/p>
+					&lt;p>Puedes también revisar esta respuesta en el Área de clientes, en la opción Preguntas a los socios.&lt;/p>
+					&lt;p>
+						Saludos,&lt;br>
+						Departamento de Ventas
+					&lt;/p>
+					&lt;p>Por favor, no responda directamente a este mensaje, ya que ha sido enviado desde un correo electrónico que no se supervisa.&lt;/p>
+				&lt;/body>
+			&lt;/html>
+		</item>
+		<item key="DeleteAProperty" value="Eliminar un inmueble" />
+		<item key="DeleteAPropertyFeature" value="Eliminar una característica de inmueble" />
+		<item key="DeleteAPropertyPicture" value="Eliminar una imagen de inmueble" />
+		<item key="EditAProperty" value="Editar un inmueble" />
+		<item key="EditAPropertyFeature" value="Editar una característica de inmueble" />
+		<item key="EditAPropertyPicture" value="Editar una imagen de inmueble" />
+		<item key="From" value="De" />
+		<item key="Hidden" value="Oculto" />
+		<item key="InOrderToPublishAPropertyYouShouldAddItHere" value="Para publicar un inmueble, primero debes agregarlo aquí." />
+		<item key="InReview" value="En revisión" />
+		<item key="NotPublished" value="Publicación rechazada" />
+		<item key="PaymentHasBeenRejected" value="Se rechazó el pago con el método de pago seleccionado. Contacte con su banco para más información." />
+		<item key="PaymentMethodIsRequired" value="Debe seleccionar un método de pago." />
+		<item key="Picture" value="Imagen" />
+		<item key="PropertyFeatureDetailHasBeenAdded" value="Se ha añadido la característica de inmueble." />
+		<item key="PropertyFeatureDetailHasBeenDeleted" value="Se ha eliminado la característica de inmueble." />
+		<item key="PropertyFeatureDetailHasBeenEdited" value="Se ha editado la característica de inmueble." />
+		<item key="PropertyHasBeenAdded" value="Se ha añadido el inmueble." />
+		<item key="PropertyHasBeenDeleted" value="Se ha eliminado el inmueble." />
+		<item key="PropertyHasBeenEdited" value="Se ha editado el inmueble." />
+		<item key="PropertyHasBeenPaid" value="Se ha pagado el inmueble." />
+		<item key="PropertyPictureHasBeenAdded" value="Se ha añadido la imagen de inmueble." />
+		<item key="PropertyPictureHasBeenDeleted" value="Se ha eliminado la imagen de inmueble." />
+		<item key="PropertyPictureHasBeenEdited" value="Se ha editado la imagen de inmueble." />
+		<item key="Publish" value="Publicar" />
+		<item key="Published" value="Publicado" />
+		<item key="PublishPropertyEmailSubject" value="Pago por publicación de inmueble" />
+		<item key="PublishPropertyEmailTemplate">
+			&lt;!DOCTYPE html>
+			&lt;html>
+				&lt;head>
+					&lt;meta charset="utf-8">
+				&lt;/head>
+				&lt;body style="font-family: Roboto, 'Segoe UI', sans-serif; margin: 24px;">
+					&lt;img src="{0}" width="192" />
+					&lt;h3>Pago por publicación de inmueble&lt;/h3>
+					&lt;p>¡Hola, {1}!&lt;/p>
+					&lt;p>Recientemente has realizado el pago por la publicación de un inmueble en Hatun Search. Debido a esto, te enviamos el resumen de la transacción en este mensaje para que lo puedas conservar.&lt;/p>
+					&lt;p>
+						&lt;b>Código de transacción&lt;/b>&lt;br>
+						{2}&lt;br>
+						&lt;b>Método de pago&lt;/b>&lt;br>
+						{3} | {4}&lt;br>
+						&lt;b>Inmueble&lt;/b>&lt;br>
+						{5}&lt;br>
+						&lt;b>Plan de publicación&lt;/b>&lt;br>
+						{6}&lt;br>
+						&lt;b>Costo&lt;/b>&lt;br>
+						{7} {8}
+					&lt;/p>
+					&lt;p>Puedes también revisar este recibo en el Área de socios, en la opción Mis recibos.&lt;/p>
+					&lt;p>
+						Saludos,&lt;br>
+						Departamento de Ventas
+					&lt;/p>
+					&lt;p>Por favor, no responda directamente a este mensaje, ya que ha sido enviado desde un correo electrónico que no se supervisa.&lt;/p>
+				&lt;/body>
+			&lt;/html>
+		</item>
+		<item key="Reply" value="Responder" />
+		<item key="QuestionDetails" value="Detalles de la pregunta" />
+		<item key="QuestionHasBeenAnswered" value="Se ha respondido a la pregunta." />
+		<item key="SeenAnswer" value="Respuesta leída" />
+		<item key="ThereAreNoAddedProperties" value="No hay inmuebles añadidos" />
+		<item key="ThereAreNoPreviouslyAddedFeatures" value="No hay características agregadas anteriormente." />
+		<item key="ThereAreNoPreviouslyAddedPictures" value="No hay imágenes agregadas anteriormente." />
+		<item key="ThereAreNoPreviouslyAskedCustomerQuestions" value="No hay preguntas previamente hechas por clientes" />
+		<item key="UnansweredQuestion" value="Pregunta sin responder" />
+		<item key="UnreadAnswer" value="Respuesta no leída" />
+		<item key="UnreadQuestion" value="Pregunta no leída" />
+		<item key="WaitingForPayment" value="A la espera de pago" />
+	</language>
+</localization>

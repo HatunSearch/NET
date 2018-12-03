@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<localization>
+	<language id="es">
+		<item key="Add" value="Agregar" />
+		<item key="Account" value="Cuenta" />
+		<item key="AreYouSureYouWantToDeleteThis" value="¿Deseas eliminar este registro?" />
+		<item key="CustomerQuestions" value="Preguntas de los clientes" />
+		<item key="Delete" value="Eliminar" />
+		<item key="Home" value="Inicio" />
+		<item key="Logout" value="Cerrar sesión" />
+		<item key="MyCards" value="Mis tarjetas de crédito o débito" />
+		<item key="MyInvoices" value="Mis recibos" />
+		<item key="MyProfile" value="Mi perfil" />
+		<item key="Properties" value="Inmuebles" />
+		<item key="PublishAProperty" value="Publicar una propiedad" />
+		<item key="PublishedProperties" value="Inmuebles publicados" />
+		<item key="Sales" value="Ventas" />
+		<item key="ThereAreNoPublishedProperties" value="No hay propiedades publicadas. ¿Quieres publicar una?" />
+		<item key="ThereAreNoUnansweredCustomerQuestions" value="No hay preguntas sin responder de los clientes." />
+		<item key="UnansweredCustomerQuestions" value="Preguntas sin responder de los clientes" />
+		<item key="Update" value="Actualizar" />
+		<item key="ViewAllProperties" value="Ver todos los inmuebles" />
+		<item key="ViewAllQuestions" value="Ver todas las preguntas" />
+		<item key="WelcomePartner" value="¡Hola, {0}!" />
+	</language>
+</localization>

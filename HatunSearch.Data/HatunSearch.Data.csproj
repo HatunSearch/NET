@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{AC946C7D-DE49-4AF5-A1C9-7271B1D3AFBE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HatunSearch.Data</RootNamespace>
+    <AssemblyName>HatunSearch.Data</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>7.3</LangVersion>
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>7.3</LangVersion>
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="CustomerQuestionRepository.cs" />
+    <Compile Include="Helpers\FormatHelper.cs" />
+    <Compile Include="PartnerInvoiceDetailRepository.cs" />
+    <Compile Include="PartnerInvoiceRepository.cs" />
+    <Compile Include="Patterns\IDeletableRepository.cs" />
+    <Compile Include="Patterns\IUpdatableRepository.cs" />
+    <Compile Include="PropertyFeatureDetailRepository.cs" />
+    <Compile Include="PropertyPictureRepository.cs" />
+    <Compile Include="PropertyRepository.cs" />
+    <Compile Include="RegionRepository.cs" />
+    <Compile Include="ProvinceRepository.cs" />
+    <Compile Include="DistrictRepository.cs" />
+    <Compile Include="GenderRepository.cs" />
+    <Compile Include="CurrencyExchangeRepository.cs" />
+    <Compile Include="PartnerCardRepository.cs" />
+    <Compile Include="PartnerEmailVerificationRepository.cs" />
+    <Compile Include="PartnerLoginAttemptRepository.cs" />
+    <Compile Include="PartnerRepository.cs" />
+    <Compile Include="PartnerSessionRepository.cs" />
+    <Compile Include="Patterns\IInsertableRepository.cs" />
+    <Compile Include="PropertyTypeRepository.cs" />
+    <Compile Include="PublishModeRepository.cs" />
+    <Compile Include="PropertyFeatureRepository.cs" />
+    <Compile Include="LanguageRepository.cs" />
+    <Compile Include="CurrencyRepository.cs" />
+    <Compile Include="Patterns\ISelectableRepository.cs" />
+    <Compile Include="Databases\Connector.cs" />
+    <Compile Include="Databases\SQLServerConnector.cs" />
+    <Compile Include="CountryRepository.cs" />
+    <Compile Include="Patterns\Repository.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Security\SecureIdGenerator.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HatunSearch.Entities\HatunSearch.Entities.csproj">
+      <Project>{D143ED1C-00C0-4C8E-98FB-C725F7E71401}</Project>
+      <Name>HatunSearch.Entities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

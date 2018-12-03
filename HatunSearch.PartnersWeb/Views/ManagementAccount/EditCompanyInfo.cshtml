@@ -1,0 +1,41 @@
+﻿@using HatunSearch.Entities;
+@using HatunSearch.Entities.Data;
+@using HatunSearch.PartnersWeb.Globalization;
+@using HatunSearch.PartnersWeb.Helpers;
+@model PartnerCompanyInfoDTO
+@{
+	Layout = "~/Views/Management/Layout.cshtml";
+	LocalizationProvider localization = ViewBag.LocalizationProvider as LocalizationProvider;
+	IEnumerable<CountryDTO> countries = (ViewBag.Countries as IEnumerable<CountryDTO>)?.ToList();
+	string editCompanyInfo = localization["EditCompanyInfo"], update = localization["Update"];
+	IEnumerable<GenderDTO> genders = ViewBag.Genders as IEnumerable<GenderDTO>;
+	IEnumerable<RegionDTO> regions = (Model?.Country?.Regions ?? countries.FirstOrDefault().Regions).ToList();
+	IEnumerable<ProvinceDTO> provinces = (Model?.Region?.Provinces ?? regions.FirstOrDefault().Provinces).ToList();
+	IEnumerable<DistrictDTO> districts = Model?.Province?.Districts ?? provinces.FirstOrDefault().Districts;
+	ViewBag.Title = editCompanyInfo;
+	ViewBag.AdditionalStylesheets = new string[] { "Management", "ManagementAccount.EditCompanyInfo" };
+	ViewBag.AdditionalScripts = new string[] { "PartnersWeb.Management" };
+	ViewBag.IsBackButtonEnabled = true;
+	ViewBag.PreviousPage = Url.Action("MyProfile");
+}
+<md:dialog isFullScreen="false" type="confirmation">
+	<form action="@Url.Action("EditCompanyInfo")" method="post">
+		<md:dcontentarea>
+			<md:h6>@editCompanyInfo</md:h6>
+			@Html.MakeTextfield(MaterialHtmlHelperExtensions.MaterialTextfieldType.Filled, model => model.Name, Model?.Name)
+			@Html.MakeTextfield(MaterialHtmlHelperExtensions.MaterialTextfieldType.Filled, model => model.Address, Model?.Address)
+			@Html.MakeDropDown(MaterialHtmlHelperExtensions.MaterialTextfieldType.Filled, model => model.Country, countries, i => i.DisplayName, Model?.Country?.Id)
+			@Html.MakeDropDown(MaterialHtmlHelperExtensions.MaterialTextfieldType.Filled, model => model.Region, regions, i => i.DisplayName, Model?.Region?.Id as CompositeKey<CountryDTO, string>)
+			@Html.MakeDropDown(MaterialHtmlHelperExtensions.MaterialTextfieldType.Filled, model => model.Province, provinces, i => i.DisplayName, Model?.Province?.Id as CompositeKey<CountryDTO, string>)
+			@Html.MakeDropDown(MaterialHtmlHelperExtensions.MaterialTextfieldType.Filled, model => model.District, districts, i => i.DisplayName, Model?.District?.Id as CompositeKey<CountryDTO, string>)
+			@Html.MakeTextfield(MaterialHtmlHelperExtensions.MaterialTextfieldType.Filled, model => model.PhoneNumber, Model?.PhoneNumber)
+			@Html.MakeTextfield(MaterialHtmlHelperExtensions.MaterialTextfieldType.Filled, model => model.Website, Model?.Website)
+		</md:dcontentarea>
+		<md:dactionarea alignment="horizontal">
+			<md:dbutton>
+				<button>@update</button>
+			</md:dbutton>
+		</md:dactionarea>
+	</form>
+</md:dialog>
+<script>HatunSearch.PartnersWeb.Management.Account.EditCompanyInfo.Start("@Url.Action("Get", "CountriesAPI")");</script>

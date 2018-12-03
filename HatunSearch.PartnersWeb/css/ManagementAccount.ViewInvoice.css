@@ -1,0 +1,24 @@
+﻿md\:content {
+	padding-bottom: 16px;
+	padding-left: 16px;
+	padding-right: 16px;
+	padding-top: 16px;
+}
+md\:content > md\:subtitle1:not(:first-child) { margin-bottom: 8px; }
+md\:content > md\:h6 {
+	margin-bottom: 4px;
+	margin-top: 4px;
+}
+md\:paper > * {
+	display: table-cell;
+	vertical-align: middle;
+}
+md\:paper > md\:image {
+	margin-right: 16px;
+	width: 40px;
+}
+md\:paper > md\:subtitle1 { padding-left: 4px; }
+md\:list {
+	margin-left: -16px;
+	margin-right: -16px;
+}

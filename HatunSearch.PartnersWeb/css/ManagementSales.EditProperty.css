@@ -1,0 +1,3 @@
+﻿md\:dcontentarea { padding-bottom: 8px; }
+md\:dcontentarea > *:not(:last-child):not(md\:h6) { margin-bottom: 4px; }
+md\:dcontentarea > md\:h6 { margin-bottom: 8px !important; }

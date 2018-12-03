@@ -1,0 +1,58 @@
+﻿@using HatunSearch.Entities;
+@using HatunSearch.PartnersWeb.Globalization;
+@{
+	Layout = "~/Views/Management/Layout.cshtml";
+	LocalizationProvider localization = ViewBag.LocalizationProvider as LocalizationProvider;
+	PartnerDTO account = ViewBag.Account as PartnerDTO;
+	string addACreditCard = localization["AddACreditCard"], expiration = localization["Expiration"], thereAreNoAddedCreditCards = localization["ThereAreNoAddedCreditCards"],
+		toPublishAPropertyYouNeedAnAddedCreditCard = localization["ToPublishAPropertyYouNeedAnAddedCreditCard"];
+	ICollection<PartnerCardDTO> cards = account.Cards.OrderBy(i => i.Brand).ThenBy(i => i.Last4).ToList();
+	ViewBag.Title = localization["MyCards"];
+	ViewBag.AdditionalStylesheets = new string[] { "Management", "ManagementAccount.MyCards" };
+}
+@if (cards.Count > 0)
+{
+	<md:list>
+		@foreach (PartnerCardDTO card in cards)
+		{
+			string brand = card.Brand;
+			<md:litem type="two-line" hasAButton="true" hasAnImage="true" hasAWideImage="false">
+				<md:liimage>
+					<img src="~/png/@(brand.Replace(" ", string.Empty))_400x250.png" />
+				</md:liimage>
+				<md:litext>
+					<md:litprimary>•••• •••• •••• @card.Last4</md:litprimary>
+					<md:litsecondary>@Html.Raw($"{brand} | {expiration}: {card.Expiration}")</md:litsecondary>
+				</md:litext>
+				<md:libutton urlaction="@Url.Action("DeleteCard", new { id = card.Id })">
+					<md:icon>
+						<svg viewBox="0 0 24 24">
+							<path d="M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z" />
+						</svg>
+					</md:icon>
+				</md:libutton>
+			</md:litem>
+		}
+	</md:list>
+	if (cards.Count < 10)
+	{
+		<md:floatingactionbutton type="regular" urlaction="@Url.Action("AddCard")">
+			<md:icon>
+				<svg viewBox="0 0 24 24">
+					<path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" />
+				</svg>
+			</md:icon>
+		</md:floatingactionbutton>
+	}
+}
+else
+{
+	<md:paper>
+		<img src="~/png/MyCards.Placeholder_256x256.png" />
+		<md:h5>@thereAreNoAddedCreditCards</md:h5>
+		<md:subtitle1>@toPublishAPropertyYouNeedAnAddedCreditCard</md:subtitle1>
+		<md:button type="text">
+			<a href="@Url.Action("AddCard")">@addACreditCard</a>
+		</md:button>
+	</md:paper>
+}

@@ -1,0 +1,33 @@
+﻿@using HatunSearch.Entities;
+@using HatunSearch.PartnersWeb.Globalization;
+@using HatunSearch.PartnersWeb.Helpers;
+@model PartnerPersonalInfoDTO
+@{
+	Layout = "~/Views/Layout.cshtml";
+	LocalizationProvider localization = ViewBag.LocalizationProvider as LocalizationProvider;
+	string createANewAccount = localization["CreateANewAccount"], next = localization["Next"], step2PersonalInfo = localization["Step2PersonalInfo"];
+	IEnumerable<GenderDTO> genders = ViewBag.Genders as IEnumerable<GenderDTO>;
+	ViewBag.Title = createANewAccount;
+	ViewBag.AdditionalStylesheets = new string[] { "Accounts", "Accounts.Signup" };
+	ViewBag.AddAScrim = true;
+}
+<md:dialog isFullScreen="false" type="confirmation">
+	<form action="@Url.Action("SignupStep2")" method="post">
+		<md:dcontentarea>
+			<img src="~/png/Logo_361x86.png" />
+			<md:h6>@createANewAccount</md:h6>
+			<md:subtitle2>@localization["Step2PersonalInfo"]</md:subtitle2>
+			@Html.MakeTextfield(MaterialHtmlHelperExtensions.MaterialTextfieldType.Filled, model => model.FirstName, Model?.FirstName)
+			@Html.MakeTextfield(MaterialHtmlHelperExtensions.MaterialTextfieldType.Filled, model => model.MiddleName, Model?.MiddleName)
+			@Html.MakeTextfield(MaterialHtmlHelperExtensions.MaterialTextfieldType.Filled, model => model.LastName, Model?.LastName)
+			@Html.MakeDropDown(MaterialHtmlHelperExtensions.MaterialTextfieldType.Filled, model => model.Gender, genders, i => i.DisplayName.Value, Model?.Gender?.Id)
+			@Html.MakeTextfield(MaterialHtmlHelperExtensions.MaterialTextfieldType.Filled, model => model.EmailAddress, Model?.EmailAddress)
+			@Html.MakeTextfield(MaterialHtmlHelperExtensions.MaterialTextfieldType.Filled, model => model.MobileNumber, Model?.MobileNumber)
+		</md:dcontentarea>
+		<md:dactionarea alignment="horizontal">
+			<md:dbutton>
+				<button>@next</button>
+			</md:dbutton>
+		</md:dactionarea>
+	</form>
+</md:dialog>

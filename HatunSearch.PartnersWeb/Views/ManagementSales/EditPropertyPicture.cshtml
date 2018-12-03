@@ -1,0 +1,33 @@
+﻿@using HatunSearch.Entities;
+@using HatunSearch.PartnersWeb.Globalization;
+@using HatunSearch.PartnersWeb.Helpers;
+@model PropertyPictureDTO
+@{
+	Layout = "~/Views/Management/Layout.cshtml";
+	LocalizationProvider localization = ViewBag.LocalizationProvider as LocalizationProvider;
+	string delete = localization["Delete"], editAPropertyPicture = localization["EditAPropertyPicture"], update = localization["Update"];
+	ViewBag.Title = editAPropertyPicture;
+	ViewBag.AdditionalStylesheets = new string[] { "Management", "ManagementSales.EditPropertyPicture" };
+	ViewBag.IsBackButtonEnabled = true;
+	ViewBag.PreviousPage = Url.Action("ViewProperty", new { id = (Guid)ViewBag.PropertyId });
+}
+<md:dialog isFullScreen="false" type="confirmation">
+	<form action="@Url.Action("EditPropertyPicture")" method="post">
+		<md:dcontentarea>
+			<md:h6>@editAPropertyPicture</md:h6>
+			<md:subtitle2>@localization[Html.DisplayNameFor(model => model.Id).ToString()]</md:subtitle2>
+			<md:subtitle1>@Model.Id</md:subtitle1>
+			<md:subtitle2>@localization["Picture"]</md:subtitle2>
+			<img src="~/img/@(Model.Id).bin" />
+			@Html.MakeTextfield(MaterialHtmlHelperExtensions.MaterialTextfieldType.Filled, model => model.Description, Model?.Description)
+		</md:dcontentarea>
+		<md:dactionarea alignment="horizontal">
+			<md:dbutton>
+				<button>@update</button>
+			</md:dbutton>
+			<md:dbutton>
+				<a href="@Url.Action("DeletePropertyPicture")">@delete</a>
+			</md:dbutton>
+		</md:dactionarea>
+	</form>
+</md:dialog>

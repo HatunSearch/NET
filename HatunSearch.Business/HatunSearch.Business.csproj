@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{AA3F98A7-0A77-4B0A-A8BF-61D312674980}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HatunSearch.Business</RootNamespace>
+    <AssemblyName>HatunSearch.Business</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>7.3</LangVersion>
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>7.3</LangVersion>
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="CustomerQuestionBLL.cs" />
+    <Compile Include="PartnerInvoiceDetailBLL.cs" />
+    <Compile Include="PartnerInvoiceBLL.cs" />
+    <Compile Include="Patterns\IDeletableBLL.cs" />
+    <Compile Include="Patterns\IUpdatableBLL.cs" />
+    <Compile Include="PropertyBLL.cs" />
+    <Compile Include="PropertyFeatureDetailBLL.cs" />
+    <Compile Include="PropertyPictureBLL.cs" />
+    <Compile Include="RegionBLL.cs" />
+    <Compile Include="ProvinceBLL.cs" />
+    <Compile Include="DistrictBLL.cs" />
+    <Compile Include="Helpers\BinaryComparer.cs" />
+    <Compile Include="Helpers\EmailSender.cs" />
+    <Compile Include="PartnerBLL.cs" />
+    <Compile Include="PartnerEmailVerificationBLL.cs" />
+    <Compile Include="PartnerLoginAttemptBLL.cs" />
+    <Compile Include="PartnerCardBLL.cs" />
+    <Compile Include="PartnerSessionBLL.cs" />
+    <Compile Include="Patterns\ICreatableBLL.cs" />
+    <Compile Include="PublishModeBLL.cs" />
+    <Compile Include="PropertyTypeBLL.cs" />
+    <Compile Include="PropertyFeatureBLL.cs" />
+    <Compile Include="LanguageBLL.cs" />
+    <Compile Include="GenderBLL.cs" />
+    <Compile Include="CurrencyBLL.cs" />
+    <Compile Include="CurrencyExchangeBLL.cs" />
+    <Compile Include="CountryBLL.cs" />
+    <Compile Include="Patterns\BLL.cs" />
+    <Compile Include="Patterns\IReadableBLL.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HatunSearch.Data\HatunSearch.Data.csproj">
+      <Project>{AC946C7D-DE49-4AF5-A1C9-7271B1D3AFBE}</Project>
+      <Name>HatunSearch.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HatunSearch.Entities\HatunSearch.Entities.csproj">
+      <Project>{D143ED1C-00C0-4C8E-98FB-C725F7E71401}</Project>
+      <Name>HatunSearch.Entities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Stripe.net, Version=21.4.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stripe.net.21.4.1\lib\net45\Stripe.net.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

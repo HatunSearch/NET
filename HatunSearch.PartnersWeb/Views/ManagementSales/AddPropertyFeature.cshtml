@@ -1,0 +1,28 @@
+﻿@using HatunSearch.Entities;
+@using HatunSearch.PartnersWeb.Globalization;
+@using HatunSearch.PartnersWeb.Helpers;
+@model PropertyFeatureDetailDTO
+@{
+	Layout = "~/Views/Management/Layout.cshtml";
+	LocalizationProvider localization = ViewBag.LocalizationProvider as LocalizationProvider;
+	string add = localization["Add"], addAPropertyFeature = localization["AddAPropertyFeature"];
+	IEnumerable<PropertyFeatureDTO> features = ViewBag.Features as IEnumerable<PropertyFeatureDTO>;
+	ViewBag.Title = addAPropertyFeature;
+	ViewBag.AdditionalStylesheets = new string[] { "Management" };
+	ViewBag.IsBackButtonEnabled = true;
+	ViewBag.PreviousPage = Url.Action("ViewProperty");
+}
+<md:dialog isFullScreen="false" type="confirmation">
+	<form action="@Url.Action("AddPropertyFeature")" method="post">
+		<md:dcontentarea>
+			<md:h6>@addAPropertyFeature</md:h6>
+			@Html.MakeDropDown(MaterialHtmlHelperExtensions.MaterialTextfieldType.Filled, model => model.Feature, features, i => i.DisplayName, Model?.Feature?.Id ?? 0)
+			@Html.MakeTextfield(MaterialHtmlHelperExtensions.MaterialTextfieldType.Filled, model => model.Value, Model?.Value)
+		</md:dcontentarea>
+		<md:dactionarea alignment="horizontal">
+			<md:dbutton>
+				<button>@add</button>
+			</md:dbutton>
+		</md:dactionarea>
+	</form>
+</md:dialog>

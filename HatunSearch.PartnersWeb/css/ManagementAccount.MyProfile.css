@@ -1,0 +1,21 @@
+﻿md\:ccontentarea { padding-bottom: unset; }
+md\:ccontentarea > * { margin-bottom: 4px; }
+
+@media (max-width: 768px) {
+	md\:card {
+		margin-bottom: 0;
+		margin-left: 0;
+		margin-right: 0;
+	}
+	md\:card:not(:first-of-type) > md\:ccontentarea { padding-top: unset; }
+}
+@media (min-width: 769px) {
+	md\:content {
+		column-count: 2;
+		margin: 24px;
+	}
+	md\:card {
+		display: inline-block;
+		width: calc(100% - 8px);
+	}
+}

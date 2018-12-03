@@ -1,0 +1,50 @@
+﻿@using HatunSearch.Entities;
+@using HatunSearch.PartnersWeb.Controllers;
+@using HatunSearch.PartnersWeb.Globalization;
+@using HatunSearch.PartnersWeb.Helpers;
+@model ManagementSalesController.PublishPropertyDTO
+@{
+	Layout = "~/Views/Management/Layout.cshtml";
+	LocalizationProvider localization = ViewBag.LocalizationProvider as LocalizationProvider;
+	PartnerDTO account = ViewBag.Account as PartnerDTO;
+	IEnumerable<PartnerCardDTO> cards = account.Cards as IEnumerable<PartnerCardDTO>;
+	IEnumerable<CurrencyExchangeDTO> currenciesExchanges = (ViewBag.CurrenciesExchanges as IEnumerable<CurrencyExchangeDTO>).ToList();
+	string propertyText = localization["Property"], publishAProperty = localization["PublishAProperty"], publish = localization["Publish"],
+		youWillGetAnEmailNotificationAboutThisAction = localization["YouWillGetAnEmailNotificationAboutThisAction"];
+	CurrencyDTO preferredCurrency = account.PreferredCurrency;
+	PropertyDTO property = ViewBag.Property as PropertyDTO;
+	IEnumerable<PublishModeDTO> publishModes = ViewBag.PublishModes as IEnumerable<PublishModeDTO>;
+	ViewBag.Title = publishAProperty;
+	ViewBag.AdditionalStylesheets = new string[] { "Management", "ManagementSales.PublishProperty" };
+	ViewBag.IsBackButtonEnabled = true;
+	ViewBag.PreviousPage = Url.Action("ViewProperty", new { id = property.Id });
+}
+<md:dialog isFullScreen="false" type="confirmation">
+	<form action="@Url.Action("PublishProperty")" method="post">
+		<md:dcontentarea>
+			<md:h6>@publishAProperty</md:h6>
+			<md:subtitle2>@propertyText</md:subtitle2>
+			<md:subtitle1>@property.Name</md:subtitle1>
+			@Html.MakeDropDown(MaterialHtmlHelperExtensions.MaterialTextfieldType.Filled, model => model.PaymentMethod, cards, i => $"{i.Brand} | •••• •••• •••• {i.Last4}", Model?.PaymentMethod?.Id ?? new Guid())
+			@Html.MakeDropDown(MaterialHtmlHelperExtensions.MaterialTextfieldType.Filled, model => model.PublishMode, publishModes, i =>
+			{
+				decimal cost = i.Cost;
+				if (i.Currency.Id != preferredCurrency.Id) cost *= currenciesExchanges.FirstOrDefault(ii => ii.From.Id == i.Currency.Id).Rate;
+				return $"{i.DisplayName} ({preferredCurrency.Symbol} {cost.ToString("0.00")})";
+			}, Model?.PublishMode?.Id ?? 0)
+			<md:paper>
+				<md:image>
+					<svg viewBox="0 0 24 24">
+						<path d="M20,8L12,13L4,8V6L12,11L20,6M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z" />
+					</svg>
+				</md:image>
+				<md:caption>@youWillGetAnEmailNotificationAboutThisAction</md:caption>
+			</md:paper>
+		</md:dcontentarea>
+		<md:dactionarea alignment="horizontal">
+			<md:dbutton>
+				<button>@publish</button>
+			</md:dbutton>
+		</md:dactionarea>
+	</form>
+</md:dialog>

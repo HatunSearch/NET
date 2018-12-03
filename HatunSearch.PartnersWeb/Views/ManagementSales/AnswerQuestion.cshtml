@@ -1,0 +1,35 @@
+﻿@using HatunSearch.Entities;
+@using HatunSearch.PartnersWeb.Controllers;
+@using HatunSearch.PartnersWeb.Globalization;
+@using HatunSearch.PartnersWeb.Helpers;
+@model ManagementSalesController.AnswerQuestionDTO
+@{
+	Layout = "~/Views/Management/Layout.cshtml";
+	LocalizationProvider localization = ViewBag.LocalizationProvider as LocalizationProvider;
+	string answerQuestion = localization["AnswerQuestion"], customer = localization["Customer"], property = localization["Property"], questionText = localization["Question"],
+		reply = localization["Reply"];
+	CustomerQuestionDTO question = ViewBag.Question as CustomerQuestionDTO;
+	ViewBag.Title = answerQuestion;
+	ViewBag.AdditionalStylesheets = new string[] { "Management", "ManagementSales.AnswerQuestion" };
+	ViewBag.IsBackButtonEnabled = true;
+	ViewBag.PreviousPage = Url.Action("ViewCustomerQuestion");
+}
+<md:dialog isFullScreen="false" type="confirmation">
+	<form action="@Url.Action("AnswerQuestion")" method="post">
+		<md:dcontentarea>
+			<md:h6>@answerQuestion</md:h6>
+			<md:subtitle2>@customer</md:subtitle2>
+			<md:subtitle1>@question.Customer.FullName</md:subtitle1>
+			<md:subtitle2>@questionText</md:subtitle2>
+			<md:subtitle1>@question.Question</md:subtitle1>
+			<md:subtitle2>@property</md:subtitle2>
+			<md:subtitle1>@question.Property.Name</md:subtitle1>
+			@Html.MakeTextfield(MaterialHtmlHelperExtensions.MaterialTextfieldType.MultipleLinesFilled, model => model.Answer)
+		</md:dcontentarea>
+		<md:dactionarea alignment="horizontal">
+			<md:dbutton>
+				<button>@reply</button>
+			</md:dbutton>
+		</md:dactionarea>
+	</form>
+</md:dialog>

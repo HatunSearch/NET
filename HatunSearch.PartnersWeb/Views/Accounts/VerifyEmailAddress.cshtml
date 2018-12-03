@@ -1,0 +1,34 @@
+﻿@using HatunSearch.Entities;
+@using HatunSearch.PartnersWeb.Globalization;
+@model PartnerEmailVerificationDTO
+@{
+	Layout = "~/Views/Layout.cshtml";
+	LocalizationProvider localization = ViewBag.LocalizationProvider as LocalizationProvider;
+	string emailAddress = ViewBag.EmailAddress as string, goToLogin = localization["GoToLogin"], verifyEmailAddressBody = localization["VerifyEmailAddressBody"],
+		verifyEmailAddressWithIdBody = localization["VerifyEmailAddressWithIdBody"], verifyYourEmailAddress = localization["VerifyYourEmailAddress"],
+		weHaveSentYouAnEmailMessage = localization["WeHaveSentYouAnEmailMessage"], yourEmailAddressHasBeenVerified = localization["YourEmailAddressHasBeenVerified"];
+	ViewBag.Title = verifyYourEmailAddress;
+	ViewBag.AdditionalStylesheets = new string[] { "Accounts", "Accounts.Signup" };
+	ViewBag.AddAScrim = true;
+}
+<md:dialog isFullScreen="false" type="confirmation">
+	<md:dcontentarea>
+		<img src="~/png/Logo_361x86.png" />
+		<md:h6>@verifyYourEmailAddress</md:h6>
+		@if (Model == null)
+		{
+			<md:subtitle2>@string.Format(weHaveSentYouAnEmailMessage, emailAddress)</md:subtitle2>
+			<md:body1>@verifyEmailAddressBody</md:body1>
+		}
+		else
+		{
+			<md:subtitle2>@string.Format(yourEmailAddressHasBeenVerified, Model.EmailAddress)</md:subtitle2>
+			<md:body1>@verifyEmailAddressWithIdBody</md:body1>
+		}
+	</md:dcontentarea>
+	<md:dactionarea alignment="horizontal">
+		<md:dbutton>
+			<a href="@Url.Action("Login")">@goToLogin</a>
+		</md:dbutton>
+	</md:dactionarea>
+</md:dialog>

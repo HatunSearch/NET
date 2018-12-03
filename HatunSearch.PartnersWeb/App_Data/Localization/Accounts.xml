@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<localization>
+	<language id="es">
+		<item key="AccountDoesntExist" value="La cuenta ingresada no existe." />
+		<item key="AccountIsLocked" value="La cuenta ha sido bloqueada. Contacte con el departamento de atención al cliente para solucionar este inconveniente." />
+		<item key="CloseAllOpenedPages" value="Por seguridad, se le pide que cierre todas las páginas del Área de Socios para evitar que información sensible se siga mostrando incluso con la sesión cerrada." />
+		<item key="CreateANewAccount" value="Cree una nueva cuenta" />
+		<item key="DoYouAlreadyHaveAnAccount" value="¿Ya tienes una cuenta? &lt;a href=&quot;{0}&quot;>Inicia sesión&lt;/a>." />
+		<item key="EmailAddressHasNotBeenVerified" value="La dirección de correo electrónico no ha sido verificada aún. Debe verificarla antes de iniciar sesión." />
+		<item key="EmailVerificationTemplate">
+			&lt;!DOCTYPE html>
+			&lt;html>
+				&lt;head>
+					&lt;meta charset="utf-8">
+				&lt;/head>
+				&lt;body style="font-family: Roboto, 'Segoe UI', sans-serif; margin: 24px;">
+					&lt;img src="{0}" width="192" />
+					&lt;h3>Verifique su dirección de correo electrónico&lt;/h3>
+					&lt;p>¡Hola, {1}!&lt;/p>
+					&lt;p>Usted se ha registrado recientemente en Hatun Search con esta dirección de correo electrónico. Por motivos de seguridad, necesitamos comprobar que esta dirección le pertenece antes de permitirle iniciar sesión por primera vez. Si requerimos enviarle información urgente relacionada con su cuenta o nuestros servicios, se la enviaremos aquí.&lt;/p>
+					&lt;p>Ingrese al siguiente enlace para confirmar su dirección de correo electrónico:&lt;/p>
+					&lt;table>
+						&lt;tbody>
+							&lt;tr>
+								&lt;td style="background: blue; height: 36px; padding: 0 16px; vertical-align: middle;">
+									&lt;a href="{2}" style="color: white; font-weight: bold; text-decoration: none;">Verificar mi dirección de correo electrónico&lt;/a>
+								&lt;/td>
+							&lt;/tr>
+						&lt;/tbody>
+					&lt;/table>
+					&lt;p>El anterior enlace tiene una expiración de 24 horas. Tras ese tiempo, deberá volver a realizar su registro en Hatun Search.&lt;/p>
+					&lt;p>Por favor, no responda a este mensaje, ya que se ha enviado desde un correo electrónico que no se supervisa.&lt;/p>
+				&lt;/body>
+			&lt;/html>
+		</item>
+		<item key="Finish" value="Finalizar" />
+		<item key="GoToLogin" value="Ir a Iniciar sesión" />
+		<item key="Login" value="Iniciar sesión" />
+		<item key="LogIntoYourAccount" value="Inicie sesión en su cuenta" />
+		<item key="Next" value="Siguiente" />
+		<item key="PartnersArea" value="Área de socios" />
+		<item key="PasswordDoesntMatch" value="La contraseña no coincide con la de la cuenta." />
+		<item key="Step1AccessCredentials" value="Paso 1: Credenciales de acceso" />
+		<item key="Step2PersonalInfo" value="Paso 2: Información personal" />
+		<item key="Step3CompanyInfo" value="Paso 3: Información de la empresa" />
+		<item key="Step4Preferences" value="Paso 4: Preferencias" />
+		<item key="VerifyEmailAddressBody" value="Busque el mensaje de verificación que le hemos enviado a su dirección de correo electrónico en su bandeja de entrada (incluida la carpeta de Elementos no deseados o SPAM) y siga las instrucciones que ahí se encuentran para verificar su cuenta de Hatun Search." />
+		<item key="VerifyEmailAddressWithIdBody" value="Su cuenta de Hatun Search ha sido activada. Ya puede ir a la pantalla de inicio de sesión y acceder al panel de administración para miembros con sus credenciales." />
+		<item key="VerifyYourEmailAddress" value="Verifique su dirección de correo electrónico" />
+		<item key="WeHaveSentYouAnEmailMessage" value="Hemos enviado un mensaje de correo electrónico a {0}" />
+		<item key="YouHaveBeenLoggedOut" value="Se ha cerrado su sesión" />
+		<item key="YourEmailAddressHasBeenVerified" value="Su dirección de correo electrónico {0} ha sido verificada" />
+		<item key="YourSessionHasExpired" value="Su sesión ha expirado. Vuelva a iniciar sesión." />
+		<item key="YouShouldLogInFirst" value="Debes iniciar sesión primero antes de entrar a esta sección." />
+	</language>
+</localization>

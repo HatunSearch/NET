@@ -1,0 +1,7 @@
+﻿md\:content {
+	padding-bottom: 16px;
+	padding-left: 16px;
+	padding-right: 16px;
+	padding-top: 16px;
+}
+md\:content > md\:subtitle1:not(:first-child) { margin-bottom: 8px; }

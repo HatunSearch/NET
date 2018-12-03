@@ -1,0 +1,94 @@
+﻿@using HatunSearch.Entities;
+@using HatunSearch.PartnersWeb.Globalization;
+@{
+	Layout = "~/Views/Management/Layout.cshtml";
+	LocalizationProvider localization = ViewBag.LocalizationProvider as LocalizationProvider;
+	PartnerDTO account = ViewBag.Account as PartnerDTO;
+	string accessCredentials = localization["AccessCredentials"], address = localization["Address"], changePassword = localization["ChangePassword"],
+		changePreferences = localization["ChangePreferences"], companyInfo = localization["CompanyInfo"], editInformation = localization["EditInformation"],
+		emailAddress = localization["EmailAddress"], firstName = localization["FirstName"], gender = localization["Gender"], lastName = localization["LastName"],
+		middleName = localization["MiddleName"], mobileNumber = localization["MobileNumber"], password = localization["Password"], personalInfo = localization["PersonalInfo"],
+		phoneNumber = localization["PhoneNumber"], preferences = localization["Preferences"], preferredCurrency = localization["PreferredCurrency"],
+		preferredLanguage = localization["PreferredLanguage"], username = localization["Username"], website = localization["Website"];
+	ViewBag.AdditionalStylesheets = new string[] { "Management", "ManagementAccount.MyProfile" };
+	ViewBag.Title = localization["MyProfile"];
+}
+<md:card>
+	<md:ccontentarea>
+		<md:h6>@companyInfo</md:h6>
+		<md:h5>@account.CompanyName</md:h5>
+		<md:subtitle2>@address</md:subtitle2>
+		<md:subtitle1>@account.Address</md:subtitle1>
+		<md:subtitle1>@Html.Raw($"{account.District.DisplayName}, {account.Province.DisplayName}, {account.Region.DisplayName}, {account.Country.DisplayName}")</md:subtitle1>
+		<md:subtitle2>@phoneNumber</md:subtitle2>
+		<md:subtitle1>
+			<a href="tel:@account.PhoneNumber">@account.PhoneNumber</a>
+		</md:subtitle1>
+		<md:subtitle2>@website</md:subtitle2>
+		<md:subtitle1>
+			<a href="@account.Website">@account.Website</a>
+		</md:subtitle1>
+	</md:ccontentarea>
+	<md:cactionarea>
+		<md:cabutton>
+			<a href="@Url.Action("EditCompanyInfo")">@editInformation</a>
+		</md:cabutton>
+	</md:cactionarea>
+</md:card>
+<md:card>
+	<md:ccontentarea>
+		<md:h6>@personalInfo</md:h6>
+		<md:subtitle2>@firstName</md:subtitle2>
+		<md:subtitle1>@account.FirstName</md:subtitle1>
+		@if (account.MiddleName != null)
+		{
+			<md:subtitle2>@middleName</md:subtitle2>
+			<md:subtitle1>@account.MiddleName</md:subtitle1>
+		}
+		<md:subtitle2>@lastName</md:subtitle2>
+		<md:subtitle1>@account.LastName</md:subtitle1>
+		<md:subtitle2>@gender</md:subtitle2>
+		<md:subtitle1>@account.Gender.DisplayName</md:subtitle1>
+		<md:subtitle2>@emailAddress</md:subtitle2>
+		<md:subtitle1>
+			<a href="mailto:@account.EmailAddress">@account.EmailAddress</a>
+		</md:subtitle1>
+		<md:subtitle2>@mobileNumber</md:subtitle2>
+		<md:subtitle1>
+			<a href="tel:@account.MobileNumber">@account.MobileNumber</a>
+		</md:subtitle1>
+	</md:ccontentarea>
+	<md:cactionarea>
+		<md:cabutton>
+			<a href="@Url.Action("EditPersonalInfo")">@editInformation</a>
+		</md:cabutton>
+	</md:cactionarea>
+</md:card>
+<md:card>
+	<md:ccontentarea>
+		<md:h6>@accessCredentials</md:h6>
+		<md:subtitle2>@username</md:subtitle2>
+		<md:subtitle1>@account.Username</md:subtitle1>
+		<md:subtitle2>@password</md:subtitle2>
+		<md:subtitle1>••••••••</md:subtitle1>
+	</md:ccontentarea>
+	<md:cactionarea>
+		<md:cabutton type="text">
+			<a href="@Url.Action("EditCredentials")">@changePassword</a>
+		</md:cabutton>
+	</md:cactionarea>
+</md:card>
+<md:card>
+	<md:ccontentarea>
+		<md:h6>@preferences</md:h6>
+		<md:subtitle2>@preferredCurrency</md:subtitle2>
+		<md:subtitle1>@account.PreferredCurrency.DisplayName</md:subtitle1>
+		<md:subtitle2>@preferredLanguage</md:subtitle2>
+		<md:subtitle1>@account.PreferredLanguage.DisplayName</md:subtitle1>
+	</md:ccontentarea>
+	<md:cactionarea>
+		<md:cabutton type="text">
+			<a href="@Url.Action("EditPreferences")">@changePreferences</a>
+		</md:cabutton>
+	</md:cactionarea>
+</md:card>
