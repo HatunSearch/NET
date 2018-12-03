@@ -2,6 +2,7 @@
 HatunSearch.PartnersWeb/Web.config
 HatunSearch.PartnersWeb/Properties/PublishProfiles/*
 HatunSearch.PartnersWeb/img/*
+HatunSearch.Testing/app.config
 packages/*
 */bin
 */obj
